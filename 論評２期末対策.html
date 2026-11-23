@@ -1,0 +1,3399 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FACTBOOK I 期末テスト対策ラボ | Unit 7 分詞 & Unit 8 比較</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans & Noto Sans JP -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '"Noto Sans JP"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#312e81',
+            },
+            unit7: {
+              light: '#eff6ff',
+              DEFAULT: '#2563eb',
+              dark: '#1d4ed8',
+            },
+            unit8: {
+              light: '#f0fdf4',
+              DEFAULT: '#059669',
+              dark: '#047857',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #f8fafc;
+      color: #0f172a;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 赤シート用スタイル */
+    .red-sheet-masked {
+      background-color: #e11d48 !important;
+      color: transparent !important;
+      border-radius: 0.5rem;
+      user-select: none;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+    .red-sheet-masked::after {
+      content: "TAP";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.75);
+    }
+    .red-sheet-masked.revealed {
+      background-color: #ffe4e6 !important;
+      color: #be123c !important;
+      box-shadow: none;
+    }
+    .red-sheet-masked.revealed::after {
+      display: none;
+    }
+
+    .dark-sheet-masked {
+      background-color: #1e293b !important;
+      color: transparent !important;
+      border-radius: 0.5rem;
+      user-select: none;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    .dark-sheet-masked::after {
+      content: "TAP TO CHECK";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.65);
+    }
+    .dark-sheet-masked.revealed {
+      background-color: #e0e7ff !important;
+      color: #3730a3 !important;
+    }
+    .dark-sheet-masked.revealed::after {
+      display: none;
+    }
+
+    /* フラッシュカード 3Dフリップ */
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .transform-style-3d {
+      transform-style: preserve-3d;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+
+    /* スクロールバー非表示（横スクロールナビ用） */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* スマホ・PC共通の操作性向上（横スクロール防止＆タッチ快適化） */
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    button, [role="button"], label[for], select {
+      touch-action: manipulation;
+    }
+    /* iOS Safari等でinputフォーカス時に画面が勝手ズームされるのを防止 */
+    @media (max-width: 640px) {
+      input[type="text"], textarea, select {
+        font-size: 16px !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col pb-20 md:pb-0">
+
+  <!-- トップヘッダー＆学習ステータスバー -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-6xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2.5 sm:gap-3">
+        <!-- タイトルロゴ -->
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2 sm:gap-2.5 min-w-0">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-brand-600 to-indigo-800 text-white flex items-center justify-center shadow-md shrink-0">
+              <i class="fa-solid fa-graduation-cap text-base sm:text-lg"></i>
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="text-[10px] sm:text-xs font-extrabold uppercase tracking-wider px-1.5 sm:px-2 py-0.5 rounded-md bg-brand-50 text-brand-700 border border-brand-200">FACTBOOK I</span>
+                <span class="text-[11px] sm:text-xs font-semibold text-slate-500 truncate">論理・表現Ⅰ 期末対策</span>
+              </div>
+              <h1 class="text-sm sm:text-lg font-extrabold text-slate-900 tracking-tight truncate">Unit 7 分詞 &amp; Unit 8 比較</h1>
+            </div>
+          </div>
+          <!-- データ管理＆リセットボタン（モバイル表示用） -->
+          <div class="flex md:hidden items-center gap-1.5 shrink-0">
+            <button onclick="openDataModal()" class="min-h-[38px] text-xs font-bold text-brand-700 bg-brand-50 hover:bg-brand-100 active:scale-95 px-2.5 py-1.5 rounded-xl border border-brand-200 flex items-center gap-1" title="データの保存・読み込み">
+              <i class="fa-solid fa-floppy-disk"></i>
+              <span>保存/読込</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- リアルタイム学習ステータスバー -->
+        <div class="grid grid-cols-3 gap-1.5 sm:gap-3 bg-slate-50 p-1.5 sm:p-2 rounded-xl border border-slate-200/80">
+          <!-- 重要表現習得率 -->
+          <div class="flex items-center gap-1.5 sm:gap-2 px-1.5 sm:px-2 py-1 bg-white rounded-lg border border-slate-100 shadow-2xs min-w-0">
+            <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-[11px] sm:text-xs shrink-0">
+              <i class="fa-solid fa-check-double"></i>
+            </div>
+            <div class="min-w-0">
+              <div class="text-[9px] sm:text-[10px] font-bold text-slate-400 truncate">重要表現 暗記</div>
+              <div class="text-xs sm:text-sm font-extrabold text-slate-800">
+                <span id="stat-vocab-count">0</span><span class="text-[10px] sm:text-xs font-normal text-slate-400">/57</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 文法正答率 -->
+          <div class="flex items-center gap-1.5 sm:gap-2 px-1.5 sm:px-2 py-1 bg-white rounded-lg border border-slate-100 shadow-2xs min-w-0">
+            <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-brand-100 text-brand-600 flex items-center justify-center text-[11px] sm:text-xs shrink-0">
+              <i class="fa-solid fa-bullseye"></i>
+            </div>
+            <div class="min-w-0">
+              <div class="text-[9px] sm:text-[10px] font-bold text-slate-400 truncate">文法 正答率</div>
+              <div class="text-xs sm:text-sm font-extrabold text-slate-800">
+                <span id="stat-grammar-acc">--</span><span class="text-[10px] sm:text-xs font-normal text-slate-400">%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 現在の苦手（要復習）問題数 -->
+          <button onclick="startWeaknessDrill()" class="flex items-center gap-1.5 sm:gap-2 px-1.5 sm:px-2 py-1 bg-rose-50/70 hover:bg-rose-100/80 active:scale-95 rounded-lg border border-rose-200/80 transition text-left group min-w-0">
+            <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-rose-500 text-white flex items-center justify-center text-[11px] sm:text-xs shrink-0 group-hover:scale-105 transition">
+              <i class="fa-solid fa-fire"></i>
+            </div>
+            <div class="min-w-0">
+              <div class="text-[9px] sm:text-[10px] font-bold text-rose-600 truncate">要復習・苦手</div>
+              <div class="text-xs sm:text-sm font-extrabold text-rose-700">
+                <span id="stat-weak-count">0</span><span class="text-[10px] sm:text-xs font-normal text-rose-500">問</span>
+              </div>
+            </div>
+          </button>
+        </div>
+
+        <!-- データ保存・読み込みボタン（PC用） -->
+        <button onclick="openDataModal()" class="hidden md:flex items-center gap-1.5 text-xs font-bold text-brand-700 bg-brand-50 hover:bg-brand-100 px-3.5 py-2.5 rounded-xl border border-brand-200 transition shrink-0" title="学習データの保存・読み込み・初期化">
+          <i class="fa-solid fa-floppy-disk"></i>
+          <span>データ保存/読込</span>
+        </button>
+      </div>
+
+      <!-- メインナビゲーションタブ（PC・タブレット上部表示） -->
+      <nav class="hidden md:flex gap-2 mt-3 overflow-x-auto no-scrollbar pb-0.5" aria-label="学習モード切替">
+        <button onclick="switchTab('dashboard')" id="tab-dashboard" class="nav-tab flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all bg-brand-600 text-white shadow-sm">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>1. ダッシュボード</span>
+        </button>
+        <button onclick="switchTab('vocab')" id="tab-vocab" class="nav-tab flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>2. 重要表現 暗記 (57)</span>
+        </button>
+        <button onclick="switchTab('grammar-guide')" id="tab-grammar-guide" class="nav-tab flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">
+          <i class="fa-solid fa-book-open"></i>
+          <span>3. 文法解説＆例文 (35)</span>
+        </button>
+        <button onclick="switchTab('quiz')" id="tab-quiz" class="nav-tab flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">
+          <i class="fa-solid fa-pen-to-square"></i>
+          <span>4. 文法 実践演習テスト</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- スマホ専用 ボトムナビゲーションバー（片手親指操作対応） -->
+  <nav class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-[0_-4px_12px_rgba(15,23,42,0.06)] px-1.5 py-1.5" aria-label="モバイルナビゲーション">
+    <div class="grid grid-cols-4 gap-1">
+      <button onclick="switchTab('dashboard')" id="mtab-dashboard" class="mnav-tab flex flex-col items-center justify-center py-1.5 px-1 rounded-xl text-[10px] font-extrabold transition bg-brand-50 text-brand-700">
+        <i class="fa-solid fa-chart-pie text-sm mb-0.5"></i>
+        <span>ホーム</span>
+      </button>
+      <button onclick="switchTab('vocab')" id="mtab-vocab" class="mnav-tab flex flex-col items-center justify-center py-1.5 px-1 rounded-xl text-[10px] font-bold transition text-slate-500 hover:bg-slate-100">
+        <i class="fa-solid fa-layer-group text-sm mb-0.5"></i>
+        <span>重要表現</span>
+      </button>
+      <button onclick="switchTab('grammar-guide')" id="mtab-grammar-guide" class="mnav-tab flex flex-col items-center justify-center py-1.5 px-1 rounded-xl text-[10px] font-bold transition text-slate-500 hover:bg-slate-100">
+        <i class="fa-solid fa-book-open text-sm mb-0.5"></i>
+        <span>文法解説</span>
+      </button>
+      <button onclick="switchTab('quiz')" id="mtab-quiz" class="mnav-tab flex flex-col items-center justify-center py-1.5 px-1 rounded-xl text-[10px] font-bold transition text-slate-500 hover:bg-slate-100">
+        <i class="fa-solid fa-pen-to-square text-sm mb-0.5"></i>
+        <span>演習テスト</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- メインコンテンツ領域 -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-3 sm:px-4 py-4 sm:py-6">
+
+    <!-- ==========================================
+         VIEW 1: ダッシュボード（弱点分析＆学習ナビ）
+         ========================================== -->
+    <section id="view-dashboard" class="space-y-6">
+      <!-- 重点復習アラートバナー -->
+      <div id="weakness-alert-box" class="bg-gradient-to-r from-amber-50 via-orange-50 to-rose-50 border border-amber-200 rounded-2xl p-4 sm:p-5 shadow-2xs">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-start gap-3.5">
+            <div class="w-11 h-11 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-xl shrink-0 shadow-sm">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-extrabold uppercase tracking-wider text-amber-700 bg-amber-200/70 px-2 py-0.5 rounded-md">重点復習ナビ</span>
+                <span id="alert-subtitle" class="text-xs font-semibold text-slate-500">学習状況から自動分析</span>
+              </div>
+              <h2 id="alert-title" class="text-base sm:text-lg font-extrabold text-slate-900 mt-1">まずは演習テストまたは重要表現のチェックを始めよう！</h2>
+              <p id="alert-desc" class="text-xs sm:text-sm text-slate-600 mt-0.5">間違えた問題や未暗記の表現がここに自動集計され、ワンタップで弱点特訓ができます。</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2 shrink-0">
+            <button id="alert-action-btn" onclick="switchTab('quiz')" class="px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs sm:text-sm font-bold shadow-sm transition flex items-center gap-2">
+              <i class="fa-solid fa-play"></i>
+              <span>演習テストを開始</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 全体サマリーカード（3カラム） -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- 重要表現の進捗 -->
+        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-2xs flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">VOCABULARY &amp; PHRASES</span>
+              <span class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center"><i class="fa-solid fa-spell-check"></i></span>
+            </div>
+            <h3 class="text-base font-extrabold text-slate-800">重要表現 暗記達成度</h3>
+            <div class="flex items-baseline gap-2 mt-2">
+              <span id="dash-vocab-percent" class="text-3xl font-extrabold text-emerald-600">0%</span>
+              <span class="text-xs font-semibold text-slate-500">(<span id="dash-vocab-detail">0 / 57 語</span> 習得済み)</span>
+            </div>
+            <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden mt-3">
+              <div id="dash-vocab-bar" class="bg-emerald-500 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-slate-500">Unit 7: <strong id="dash-u7-vocab" class="text-slate-700">0/28</strong></span>
+            <span class="text-slate-500">Unit 8: <strong id="dash-u8-vocab" class="text-slate-700">0/29</strong></span>
+            <button onclick="switchTab('vocab')" class="font-bold text-emerald-600 hover:underline">暗記へ →</button>
+          </div>
+        </div>
+
+        <!-- 文法演習の進捗 -->
+        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-2xs flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">GRAMMAR PRACTICE</span>
+              <span class="w-8 h-8 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center"><i class="fa-solid fa-check-to-slot"></i></span>
+            </div>
+            <h3 class="text-base font-extrabold text-slate-800">文法問題 マスター率</h3>
+            <div class="flex items-baseline gap-2 mt-2">
+              <span id="dash-grammar-percent" class="text-3xl font-extrabold text-brand-600">0%</span>
+              <span class="text-xs font-semibold text-slate-500">(<span id="dash-grammar-detail">0 / 76 問</span> 正解済み)</span>
+            </div>
+            <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden mt-3">
+              <div id="dash-grammar-bar" class="bg-brand-600 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-slate-500">累計解答数: <strong id="dash-total-attempts" class="text-slate-700">0回</strong></span>
+            <button onclick="switchTab('quiz')" class="font-bold text-brand-600 hover:underline">演習へ →</button>
+          </div>
+        </div>
+
+        <!-- 弱点・苦手ストック -->
+        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-2xs flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">WEAKNESS FOCUS</span>
+              <span class="w-8 h-8 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center"><i class="fa-solid fa-fire-flame-curved"></i></span>
+            </div>
+            <h3 class="text-base font-extrabold text-slate-800">要復習ストック（苦手）</h3>
+            <div class="flex items-baseline gap-2 mt-2">
+              <span id="dash-weak-num" class="text-3xl font-extrabold text-rose-600">0</span>
+              <span class="text-xs font-semibold text-slate-500">問が復習待ち</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-2 leading-relaxed">演習で間違えた問題や「要復習」にチェックした問題を集中特訓できます。</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-slate-500">未暗記表現: <strong id="dash-unlearned-vocab" class="text-rose-600">57語</strong></span>
+            <button onclick="startWeaknessDrill()" class="font-bold text-rose-600 hover:underline">苦手特訓へ →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 単元別（fact別）理解度ヒートマップ＆分析 -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Unit 7: 分詞 -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-2xs">
+          <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+            <div class="flex items-center gap-2.5">
+              <span class="px-2.5 py-1 rounded-lg bg-unit7-light text-unit7 font-extrabold text-xs">Unit 7</span>
+              <h3 class="text-base font-extrabold text-slate-900">分詞（現在分詞・過去分詞・分詞構文）</h3>
+            </div>
+            <button onclick="startUnitQuiz(7)" class="text-xs font-bold px-3 py-1.5 rounded-lg bg-unit7-light text-unit7 hover:bg-blue-100 transition">
+              Unit 7 演習
+            </button>
+          </div>
+          <div id="heatmap-unit7" class="space-y-3">
+            <!-- JSでfactA〜factEのバーを動的生成 -->
+          </div>
+        </div>
+
+        <!-- Unit 8: 比較 -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-2xs">
+          <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+            <div class="flex items-center gap-2.5">
+              <span class="px-2.5 py-1 rounded-lg bg-unit8-light text-unit8 font-extrabold text-xs">Unit 8</span>
+              <h3 class="text-base font-extrabold text-slate-900">比較（原級・比較級・最上級・重要構文）</h3>
+            </div>
+            <button onclick="startUnitQuiz(8)" class="text-xs font-bold px-3 py-1.5 rounded-lg bg-unit8-light text-unit8 hover:bg-emerald-100 transition">
+              Unit 8 演習
+            </button>
+          </div>
+          <div id="heatmap-unit8" class="space-y-3">
+            <!-- JSでfactA〜factDのバーを動的生成 -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         VIEW 2: 重要表現 暗記システム（57表現）
+         ========================================== -->
+    <section id="view-vocab" class="hidden space-y-5">
+      <!-- コントロールパネル -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-2xs space-y-4">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div>
+            <h2 class="text-lg font-extrabold text-slate-900">重要表現 効率暗記システム（全57表現）</h2>
+            <p class="text-xs text-slate-500 mt-0.5">赤シート・フラッシュカード・4択スピードテストで完璧に暗記しよう</p>
+          </div>
+
+          <!-- サブモード切替 -->
+          <div class="grid grid-cols-3 sm:inline-flex p-1 rounded-xl bg-slate-100 border border-slate-200/70 w-full sm:w-auto">
+            <button onclick="setVocabMode('list')" id="vmode-list" class="min-h-[38px] px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-brand-700 shadow-2xs transition truncate">
+              <i class="fa-solid fa-table-list mr-1"></i>赤シート
+            </button>
+            <button onclick="setVocabMode('card')" id="vmode-card" class="min-h-[38px] px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition truncate">
+              <i class="fa-solid fa-clone mr-1"></i>カード
+            </button>
+            <button onclick="setVocabMode('quiz')" id="vmode-quiz" class="min-h-[38px] px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition truncate">
+              <i class="fa-solid fa-bolt mr-1"></i>4択テスト
+            </button>
+          </div>
+        </div>
+
+        <!-- フィルター＆赤シートコントロール -->
+        <div id="vocab-filter-bar" class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-3 border-t border-slate-100">
+          <!-- Unit & ステータスフィルター -->
+          <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 w-full sm:w-auto">
+            <select id="vocab-unit-filter" onchange="renderVocabView()" class="min-h-[40px] text-xs font-bold bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-2 text-slate-700 focus:outline-none focus:border-brand-500 w-full sm:w-auto">
+              <option value="all">全Unit (57)</option>
+              <option value="7">Unit 7 (28)</option>
+              <option value="8">Unit 8 (29)</option>
+            </select>
+
+            <select id="vocab-status-filter" onchange="renderVocabView()" class="min-h-[40px] text-xs font-bold bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-2 text-slate-700 focus:outline-none focus:border-brand-500 w-full sm:w-auto">
+              <option value="all">すべて表示</option>
+              <option value="unlearned">未暗記のみ</option>
+              <option value="learned">習得済みのみ</option>
+            </select>
+          </div>
+
+          <!-- 赤シート切替ボタン（一覧モード時のみ有効） -->
+          <div id="red-sheet-controls" class="grid grid-cols-3 sm:flex sm:flex-wrap items-center gap-1.5 sm:gap-2 w-full sm:w-auto">
+            <button onclick="toggleSheetMode('none')" id="sheet-btn-none" class="min-h-[38px] px-2 sm:px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-bold border border-slate-200 bg-slate-100 text-slate-700">
+              全表示
+            </button>
+            <button onclick="toggleSheetMode('ja')" id="sheet-btn-ja" class="min-h-[38px] px-2 sm:px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-bold border border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100 transition">
+              <i class="fa-solid fa-eye-slash mr-1"></i>日本語隠す
+            </button>
+            <button onclick="toggleSheetMode('en')" id="sheet-btn-en" class="min-h-[38px] px-2 sm:px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-bold border border-slate-700 bg-slate-800 text-white hover:bg-slate-900 transition">
+              <i class="fa-solid fa-language mr-1"></i>英語隠す
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- サブモードA: 赤シート一覧表示 -->
+      <div id="vocab-list-container" class="bg-white rounded-2xl border border-slate-200 shadow-2xs overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-extrabold text-slate-500 uppercase tracking-wider">
+                <th class="py-2.5 px-2 sm:px-4 w-12 sm:w-16 text-center">習得</th>
+                <th class="py-2.5 px-1.5 sm:px-2 w-12 sm:w-16">Unit</th>
+                <th class="py-2.5 px-2.5 sm:px-3">英語表現</th>
+                <th class="py-2.5 px-2.5 sm:px-3">日本語訳</th>
+                <th class="py-2.5 px-2 sm:px-3 w-11 sm:w-14 text-center">音声</th>
+              </tr>
+            </thead>
+            <tbody id="vocab-table-body" class="divide-y divide-slate-100 text-xs sm:text-sm">
+              <!-- JSで57表現をレンダリング -->
+            </tbody>
+          </table>
+        </div>
+        <div id="vocab-empty-msg" class="hidden p-10 text-center text-slate-500 text-sm">
+          該当する表現がありません。フィルター条件を変更してください。
+        </div>
+      </div>
+
+      <!-- サブモードB: フラッシュカード集中暗記 -->
+      <div id="vocab-card-container" class="hidden max-w-xl mx-auto space-y-4">
+        <div class="flex items-center justify-between text-xs font-bold text-slate-500 px-1">
+          <span id="fc-progress-text">1 / 57</span>
+          <span>Spaceキーで裏返し / ← まだ不安 / → 覚えた！</span>
+        </div>
+
+        <!-- カード本体 -->
+        <div onclick="flipFlashcard()" class="perspective-1000 cursor-pointer select-none">
+          <div id="fc-inner" class="relative w-full min-h-[260px] sm:min-h-[290px] transition-transform duration-500 transform-style-3d">
+            <!-- 表面（英語） -->
+            <div class="absolute inset-0 backface-hidden bg-white rounded-3xl border-2 border-slate-200 shadow-md p-6 sm:p-8 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span id="fc-unit-badge" class="px-2.5 py-1 rounded-lg bg-unit7-light text-unit7 text-xs font-extrabold">Unit 7</span>
+                <span id="fc-status-badge" class="text-xs font-bold text-slate-400">未暗記</span>
+              </div>
+              <div class="text-center my-auto py-4">
+                <p id="fc-en-text" class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug">budget</p>
+                <button onclick="event.stopPropagation(); speakCurrentCard()" class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 hover:bg-brand-100 text-brand-700 text-xs font-bold transition">
+                  <i class="fa-solid fa-volume-high"></i>
+                  <span>発音を聞く</span>
+                </button>
+              </div>
+              <div class="text-center text-xs font-semibold text-slate-400">
+                <i class="fa-solid fa-rotate mr-1"></i>タップして日本語訳を表示
+              </div>
+            </div>
+
+            <!-- 裏面（日本語訳） -->
+            <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-brand-600 to-indigo-800 text-white rounded-3xl shadow-md p-6 sm:p-8 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span id="fc-unit-badge-back" class="px-2.5 py-1 rounded-lg bg-white/20 text-white text-xs font-extrabold">Unit 7</span>
+                <span class="text-xs font-semibold text-indigo-200">MEANING</span>
+              </div>
+              <div class="text-center my-auto py-4">
+                <p id="fc-ja-text" class="text-2xl sm:text-3xl font-extrabold leading-snug">予算</p>
+                <p id="fc-en-sub" class="text-sm font-semibold text-indigo-200 mt-3">budget</p>
+              </div>
+              <div class="text-center text-xs font-semibold text-indigo-200">
+                <i class="fa-solid fa-rotate mr-1"></i>タップして英語に戻す
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 仕分けアクションボタン -->
+        <div class="grid grid-cols-2 gap-3 pt-1">
+          <button onclick="markFlashcard(false)" class="py-3.5 px-4 rounded-2xl bg-rose-50 hover:bg-rose-100 border-2 border-rose-200 text-rose-700 font-extrabold text-sm flex items-center justify-center gap-2 transition active:scale-95">
+            <i class="fa-solid fa-xmark text-base"></i>
+            <span>まだ不安（次へ）</span>
+          </button>
+          <button onclick="markFlashcard(true)" class="py-3.5 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-sm transition active:scale-95">
+            <i class="fa-solid fa-check text-base"></i>
+            <span>完璧に覚えた！</span>
+          </button>
+        </div>
+
+        <div class="flex justify-between items-center pt-2">
+          <button onclick="prevFlashcard()" class="text-xs font-bold text-slate-500 hover:text-slate-800 px-3 py-2 rounded-lg hover:bg-slate-100">
+            <i class="fa-solid fa-arrow-left mr-1"></i>前のカード
+          </button>
+          <button onclick="shuffleFlashcards()" class="text-xs font-bold text-brand-600 hover:text-brand-800 px-3 py-2 rounded-lg hover:bg-brand-50">
+            <i class="fa-solid fa-shuffle mr-1"></i>シャッフル
+          </button>
+        </div>
+      </div>
+
+      <!-- サブモードC: 重要表現 4択スピードテスト -->
+      <div id="vocab-quiz-container" class="hidden max-w-2xl mx-auto bg-white rounded-2xl border border-slate-200 p-6 shadow-2xs">
+        <div id="vq-stage">
+          <!-- JSで4択テストをレンダリング -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         VIEW 3: 文法解説＆例文マスター（35例文）
+         ========================================== -->
+    <section id="view-grammar-guide" class="hidden space-y-5">
+      <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 class="text-lg font-extrabold text-slate-900">文法解説＆キー例文マスター（全35例文）</h2>
+          <p class="text-xs text-slate-500 mt-0.5">FACTBOOKの「fact」ごとの核心ルールと例文音声を確認し、そのまま単元別演習へ進めます</p>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="filterGrammarGuide('all')" id="gg-btn-all" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-brand-600 text-white">すべて</button>
+          <button onclick="filterGrammarGuide(7)" id="gg-btn-7" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Unit 7 分詞</button>
+          <button onclick="filterGrammarGuide(8)" id="gg-btn-8" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Unit 8 比較</button>
+        </div>
+      </div>
+
+      <div id="grammar-guide-list" class="space-y-5">
+        <!-- JSでfactA〜E / factA〜Dの解説カードと35例文を動的生成 -->
+      </div>
+    </section>
+
+    <!-- ==========================================
+         VIEW 4: 文法 実践演習テスト（全76問 × 4モード完全対応）
+         ========================================== -->
+    <section id="view-quiz" class="hidden space-y-5">
+      <!-- テストモード選択ランチャー -->
+      <div id="quiz-launcher" class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-2xs space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h2 class="text-lg sm:text-xl font-extrabold text-slate-900">文法 実践演習テスト＆弱点特訓（全76問）</h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">すべての問題（基本36問＋追加40問）を4つの出題形式すべてで演習できます。</p>
+          </div>
+          <span class="self-start sm:self-auto px-3 py-1 rounded-full bg-brand-50 text-brand-700 border border-brand-200 text-xs font-extrabold">
+            収録問題数：全 76 問
+          </span>
+        </div>
+
+        <!-- STEP 1: 出題形式（4モード＋ミックス）の選択 -->
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-3">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-extrabold text-slate-700 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-brand-600 text-white text-[11px] flex items-center justify-center">1</span>
+              <span>出題形式（解答モード）を選択</span>
+            </label>
+            <span id="selected-format-desc" class="text-[11px] font-bold text-brand-700 hidden sm:inline">空欄に入る語句を4つの選択肢から選びます</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2" id="format-selector-group">
+            <button type="button" onclick="selectQuizFormat('choice')" id="fmt-btn-choice" class="fmt-btn min-h-[56px] p-2.5 rounded-xl border-2 border-brand-600 bg-brand-600 text-white font-extrabold text-xs sm:text-sm flex flex-col items-center justify-center gap-1 shadow-2xs transition active:scale-95">
+              <i class="fa-solid fa-list-ol text-base"></i>
+              <span>四択</span>
+            </button>
+            <button type="button" onclick="selectQuizFormat('fill')" id="fmt-btn-fill" class="fmt-btn min-h-[56px] p-2.5 rounded-xl border-2 border-slate-200 bg-white text-slate-700 hover:border-brand-300 font-extrabold text-xs sm:text-sm flex flex-col items-center justify-center gap-1 transition active:scale-95">
+              <i class="fa-solid fa-keyboard text-base"></i>
+              <span>空欄補充</span>
+            </button>
+            <button type="button" onclick="selectQuizFormat('order')" id="fmt-btn-order" class="fmt-btn min-h-[56px] p-2.5 rounded-xl border-2 border-slate-200 bg-white text-slate-700 hover:border-brand-300 font-extrabold text-xs sm:text-sm flex flex-col items-center justify-center gap-1 transition active:scale-95">
+              <i class="fa-solid fa-arrow-down-a-z text-base"></i>
+              <span>並べ替え</span>
+            </button>
+            <button type="button" onclick="selectQuizFormat('translate')" id="fmt-btn-translate" class="fmt-btn min-h-[56px] p-2.5 rounded-xl border-2 border-slate-200 bg-white text-slate-700 hover:border-brand-300 font-extrabold text-xs sm:text-sm flex flex-col items-center justify-center gap-1 transition active:scale-95">
+              <i class="fa-solid fa-pen-nib text-base"></i>
+              <span>英訳</span>
+            </button>
+            <button type="button" onclick="selectQuizFormat('mixed')" id="fmt-btn-mixed" class="fmt-btn min-h-[56px] col-span-2 sm:col-span-1 p-2.5 rounded-xl border-2 border-slate-200 bg-white text-slate-700 hover:border-brand-300 font-extrabold text-xs sm:text-sm flex flex-col items-center justify-center gap-1 transition active:scale-95">
+              <i class="fa-solid fa-shuffle text-base"></i>
+              <span>ミックス</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2: 出題範囲・コースの選択 -->
+        <div class="space-y-3">
+          <div class="text-xs font-extrabold text-slate-700 flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-brand-600 text-white text-[11px] flex items-center justify-center">2</span>
+            <span>出題範囲・コースを選んでスタート</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+            <!-- モード1: 弱点克服モード -->
+            <button onclick="startQuizSession({ mode: 'weak' })" class="p-4 rounded-2xl border-2 border-rose-200 bg-rose-50/60 hover:bg-rose-100/70 text-left transition flex flex-col justify-between group">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="px-2.5 py-0.5 rounded-md bg-rose-600 text-white text-[11px] font-extrabold">最優先おすすめ</span>
+                  <i class="fa-solid fa-fire text-rose-500 text-lg group-hover:scale-110 transition"></i>
+                </div>
+                <h3 class="text-base font-extrabold text-rose-950 mt-2.5">間違えた問題だけ特訓</h3>
+                <p class="text-xs text-rose-800/80 mt-1">過去に間違えた問題・要復習チェック済みの問題だけを、上で選んだ出題形式で集中演習します。</p>
+              </div>
+              <div class="mt-4 pt-2.5 border-t border-rose-200/70 flex items-center justify-between text-xs font-extrabold text-rose-700">
+                <span>対象: <span id="launcher-weak-count">0</span> 問</span>
+                <span>スタート →</span>
+              </div>
+            </button>
+
+            <!-- モード2: 全範囲ランダム10問 -->
+            <button onclick="startQuizSession({ mode: 'random10' })" class="p-4 rounded-2xl border-2 border-brand-200 bg-brand-50/50 hover:bg-brand-100/60 text-left transition flex flex-col justify-between group">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="px-2.5 py-0.5 rounded-md bg-brand-600 text-white text-[11px] font-extrabold">デイリー演習</span>
+                  <i class="fa-solid fa-bolt text-brand-600 text-lg group-hover:scale-110 transition"></i>
+                </div>
+                <h3 class="text-base font-extrabold text-slate-900 mt-2.5">全範囲ランダム 10問演習</h3>
+                <p class="text-xs text-slate-600 mt-1">全76問の中からランダムに10問を抽出してスピーディーに実力チェックします。</p>
+              </div>
+              <div class="mt-4 pt-2.5 border-t border-brand-200/70 flex items-center justify-between text-xs font-extrabold text-brand-700">
+                <span>全76問プールから抽出</span>
+                <span>スタート →</span>
+              </div>
+            </button>
+
+            <!-- モード3: 追加40問集中コース -->
+            <button onclick="startQuizSession({ mode: 'added40' })" class="p-4 rounded-2xl border-2 border-indigo-200 bg-indigo-50/50 hover:bg-indigo-100/70 text-left transition flex flex-col justify-between group">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="px-2.5 py-0.5 rounded-md bg-indigo-600 text-white text-[11px] font-extrabold">NEW 追加問題</span>
+                  <i class="fa-solid fa-star text-indigo-600 text-lg group-hover:scale-110 transition"></i>
+                </div>
+                <h3 class="text-base font-extrabold text-slate-900 mt-2.5">追加応用問題 40問コース</h3>
+                <p class="text-xs text-slate-600 mt-1">新しく追加された実践応用40問（Q1〜Q40）だけをまとめて演習します。</p>
+              </div>
+              <div class="mt-4 pt-2.5 border-t border-indigo-200/70 flex items-center justify-between text-xs font-extrabold text-indigo-700">
+                <span>追加 40 問</span>
+                <span>スタート →</span>
+              </div>
+            </button>
+
+            <!-- モード4: Unit 7 集中 -->
+            <button onclick="startQuizSession({ mode: 'unit', unit: 7 })" class="p-4 rounded-2xl border border-blue-200 bg-unit7-light/60 hover:bg-blue-100/70 text-left transition flex flex-col justify-between">
+              <div>
+                <span class="px-2.5 py-0.5 rounded-md bg-unit7 text-white text-[11px] font-extrabold">Unit 7 分詞</span>
+                <h3 class="text-base font-extrabold text-slate-900 mt-2">Unit 7 分詞 全38問演習</h3>
+                <p class="text-xs text-slate-600 mt-1">名詞修飾・SVC/SVOC・分詞構文・付帯状況のwithを徹底攻略。</p>
+              </div>
+              <div class="mt-3 text-xs font-extrabold text-unit7 text-right">演習する →</div>
+            </button>
+
+            <!-- モード5: Unit 8 集中 -->
+            <button onclick="startQuizSession({ mode: 'unit', unit: 8 })" class="p-4 rounded-2xl border border-emerald-200 bg-unit8-light/60 hover:bg-emerald-100/70 text-left transition flex flex-col justify-between">
+              <div>
+                <span class="px-2.5 py-0.5 rounded-md bg-unit8 text-white text-[11px] font-extrabold">Unit 8 比較</span>
+                <h3 class="text-base font-extrabold text-slate-900 mt-2">Unit 8 比較 全38問演習</h3>
+                <p class="text-xs text-slate-600 mt-1">原級・比較級強調・最上級(in/of)・The比較級, the比較級・one of the最上級+複数。</p>
+              </div>
+              <div class="mt-3 text-xs font-extrabold text-unit8 text-right">演習する →</div>
+            </button>
+
+            <!-- モード6: 全76問完全制覇 -->
+            <button onclick="startQuizSession({ mode: 'all' })" class="p-4 rounded-2xl border border-slate-200 bg-slate-50/70 hover:bg-slate-100 text-left transition flex flex-col justify-between group">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="px-2.5 py-0.5 rounded-md bg-slate-700 text-white text-[11px] font-extrabold">完全網羅</span>
+                  <i class="fa-solid fa-trophy text-amber-500 text-lg group-hover:scale-110 transition"></i>
+                </div>
+                <h3 class="text-base font-extrabold text-slate-900 mt-2">全76問 コンプリート演習</h3>
+                <p class="text-xs text-slate-600 mt-1">テスト前の総仕上げに！収録されている全76問をすべて解き切ります。</p>
+              </div>
+              <div class="mt-3 text-xs font-extrabold text-slate-700 text-right">全 76 問に挑戦 →</div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 演習プレイ画面（アクティブ時のみ表示） -->
+      <div id="quiz-active-panel" class="hidden max-w-3xl mx-auto space-y-4">
+        <!-- 上部ナビ＆進捗バー -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-2xs">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <button onclick="exitQuizSession()" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1">
+              <i class="fa-solid fa-arrow-left"></i> モード選択へ戻る
+            </button>
+            <div class="flex items-center gap-1.5">
+              <span id="quiz-session-title" class="text-xs font-extrabold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-md">全範囲ランダム演習</span>
+              <span id="quiz-active-format-badge" class="text-xs font-extrabold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-md">四択モード</span>
+            </div>
+            <span id="quiz-counter" class="text-xs font-extrabold text-slate-700">1 / 10</span>
+          </div>
+          <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+            <div id="quiz-progress-bar" class="bg-brand-600 h-full transition-all duration-300" style="width: 10%"></div>
+          </div>
+        </div>
+
+        <!-- 問題カード本体 -->
+        <div id="quiz-question-card" class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-7 shadow-sm space-y-5">
+          <!-- JSで動的に問題を描画 -->
+        </div>
+      </div>
+
+      <!-- 演習リザルト画面 -->
+      <div id="quiz-result-panel" class="hidden max-w-2xl mx-auto bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm text-center space-y-5">
+        <!-- JSで結果サマリーを描画 -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- トースト通知（メッセージボックス） -->
+  <div id="toast-container" class="fixed bottom-20 md:bottom-5 left-3 right-3 sm:left-auto sm:right-5 z-50 flex flex-col items-center sm:items-end gap-2 pointer-events-none"></div>
+
+  <!-- データ保存・読み込み・初期化モーダル -->
+  <div id="data-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-slate-200 space-y-5 my-auto">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center text-base">
+            <i class="fa-solid fa-database"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-extrabold text-slate-900">学習データの保存・読み込み</h3>
+            <p class="text-[11px] text-slate-500">進捗・苦手問題・暗記チェックをバックアップ＆復元できます</p>
+          </div>
+        </div>
+        <button onclick="closeDataModal()" class="w-8 h-8 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- 1. ファイルとして保存・読み込み（JSON） -->
+      <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+        <div class="text-xs font-extrabold text-slate-800 flex items-center gap-1.5">
+          <i class="fa-solid fa-file-export text-brand-600"></i>
+          <span>方法1：バックアップファイル（.json）で保存・復元</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <button onclick="exportDataToFile()" class="py-2.5 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-extrabold shadow-2xs transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-download"></i>
+            <span>データをファイル保存</span>
+          </button>
+          <label class="py-2.5 px-4 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-700 text-xs font-extrabold cursor-pointer transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-upload text-brand-600"></i>
+            <span>ファイルから読み込み</span>
+            <input type="file" id="import-file-input" accept=".json,application/json" class="hidden" onchange="importDataFromFile(event)" />
+          </label>
+        </div>
+      </div>
+
+      <!-- 2. 引き継ぎテキストコードで保存・復元 -->
+      <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+        <div class="text-xs font-extrabold text-slate-800 flex items-center gap-1.5">
+          <i class="fa-solid fa-key text-emerald-600"></i>
+          <span>方法2：引き継ぎコードでコピー＆復元（スマホ⇔PC移行に便利）</span>
+        </div>
+        <div class="space-y-2">
+          <div class="flex gap-2">
+            <input type="text" id="save-code-box" readonly class="flex-1 px-3 py-2 rounded-xl bg-white border border-slate-200 text-[11px] font-mono text-slate-600 focus:outline-none" value="" />
+            <button onclick="copySaveCode()" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shrink-0 transition">
+              <i class="fa-solid fa-copy mr-1"></i>コピー
+            </button>
+          </div>
+          <div class="flex gap-2 pt-1">
+            <input type="text" id="load-code-input" placeholder="復元したい引き継ぎコードをここに貼り付け..." class="flex-1 px-3 py-2 rounded-xl bg-white border border-slate-300 text-xs text-slate-800 focus:border-brand-500 focus:outline-none" />
+            <button onclick="importDataFromCode()" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold shrink-0 transition">
+              コード復元
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 初期化セクション -->
+      <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+        <span class="text-[11px] text-slate-400">※データはブラウザにも自動保存されています</span>
+        <button onclick="toggleResetConfirmInModal()" id="modal-reset-trigger" class="text-xs font-bold text-rose-600 hover:underline">
+          <i class="fa-solid fa-trash-can mr-1"></i>学習データを初期化
+        </button>
+      </div>
+
+      <div id="modal-reset-confirm-box" class="hidden p-3.5 rounded-xl bg-rose-50 border border-rose-200 space-y-2.5">
+        <p class="text-xs font-bold text-rose-800">本当にすべての学習履歴（暗記・演習・苦手リスト）を削除して初期化しますか？</p>
+        <div class="flex justify-end gap-2">
+          <button onclick="toggleResetConfirmInModal()" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-bold text-slate-600">キャンセル</button>
+          <button onclick="executeResetData()" class="px-3 py-1.5 rounded-lg bg-rose-600 text-white text-xs font-bold">完全に初期化する</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. データベース定義：重要表現（計57語・フレーズ）
+    // =========================================================================
+    const VOCAB_DATA = [
+      // Unit 7 (28項目)
+      { id: 1, unit: 7, en: "budget", ja: "予算" },
+      { id: 2, unit: 7, en: "cute design", ja: "かわいいデザイン" },
+      { id: 3, unit: 7, en: "organic cotton", ja: "オーガニックコットン" },
+      { id: 4, unit: 7, en: "have a good texture", ja: "肌触りがいい" },
+      { id: 5, unit: 7, en: "prices are reasonable", ja: "値段が手ごろである", note: "※プリント表記: prices and reasonable" },
+      { id: 6, unit: 7, en: "cheap", ja: "安価な" },
+      { id: 7, unit: 7, en: "expensive", ja: "高価な" },
+      { id: 8, unit: 7, en: "long-lasting", ja: "長持ちする" },
+      { id: 9, unit: 7, en: "quality", ja: "品質" },
+      { id: 10, unit: 7, en: "be impressed with ~", ja: "～に感銘を受ける" },
+      { id: 11, unit: 7, en: "support", ja: "～を支援する" },
+      { id: 12, unit: 7, en: "clothing manufacturer", ja: "衣類製造業者" },
+      { id: 13, unit: 7, en: "environmentally friendly", ja: "環境にやさしい" },
+      { id: 14, unit: 7, en: "contain", ja: "～を含む" },
+      { id: 15, unit: 7, en: "harmful", ja: "有害な" },
+      { id: 16, unit: 7, en: "chemicals", ja: "化学物質" },
+      { id: 17, unit: 7, en: "fold one's arms", ja: "腕を組む" },
+      { id: 18, unit: 7, en: "clothing", ja: "衣類" },
+      { id: 19, unit: 7, en: "refugee", ja: "難民" },
+      { id: 20, unit: 7, en: "be sorted into ~", ja: "～に分類される" },
+      { id: 21, unit: 7, en: "be delivered to ~", ja: "～に届けられる" },
+      { id: 22, unit: 7, en: "people in need", ja: "困っている人たち" },
+      { id: 23, unit: 7, en: "unworn clothes", ja: "未着用の服" },
+      { id: 24, unit: 7, en: "remake clothes", ja: "服を作り直す" },
+      { id: 25, unit: 7, en: "the latest fashion trends", ja: "最新のファッショントレンド" },
+      { id: 26, unit: 7, en: "I'm happy to know (that) ~", ja: "～と知ってうれしい" },
+      { id: 27, unit: 7, en: "I was impressed with ~", ja: "～に感銘を受けた" },
+      { id: 28, unit: 7, en: "I was surprised to know (that) ~", ja: "～と知って驚いた" },
+
+      // Unit 8 (29項目)
+      { id: 29, unit: 8, en: "recommend", ja: "～を勧める" },
+      { id: 30, unit: 8, en: "snowman-shaped", ja: "雪だるまの形の" },
+      { id: 31, unit: 8, en: "chocolate bar", ja: "板チョコ" },
+      { id: 32, unit: 8, en: "product", ja: "製品" },
+      { id: 33, unit: 8, en: "sweeten", ja: "～を甘くする" },
+      { id: 34, unit: 8, en: "coconut nectar", ja: "ココナッツネクター" },
+      { id: 35, unit: 8, en: "instead of ~", ja: "～の代わりに" },
+      { id: 36, unit: 8, en: "reasonable price", ja: "正当な値段" },
+      { id: 37, unit: 8, en: "graph", ja: "グラフ" },
+      { id: 38, unit: 8, en: "be encouraged to do", ja: "～することを推奨される" },
+      { id: 39, unit: 8, en: "chemicals", ja: "化学薬品" },
+      { id: 40, unit: 8, en: "preservative", ja: "保存料" },
+      { id: 41, unit: 8, en: "local workers", ja: "地元の労働者" },
+      { id: 42, unit: 8, en: "fair price", ja: "公正な価格" },
+      { id: 43, unit: 8, en: "working conditions", ja: "労働環境、労働条件" },
+      { id: 44, unit: 8, en: "earn", ja: "～を稼ぐ" },
+      { id: 45, unit: 8, en: "stable life", ja: "安定した生活" },
+      { id: 46, unit: 8, en: "improve", ja: "～を改善する" },
+      { id: 47, unit: 8, en: "see from ~", ja: "～からわかる" },
+      { id: 48, unit: 8, en: "through fair trade", ja: "フェアトレードを通じて" },
+      { id: 49, unit: 8, en: "market", ja: "市場" },
+      { id: 50, unit: 8, en: "I was fascinated by ~", ja: "～に魅了された" },
+      { id: 51, unit: 8, en: "preserve", ja: "～を保存する" },
+      { id: 52, unit: 8, en: "work", ja: "作品" },
+      { id: 53, unit: 8, en: "crafts", ja: "工芸品" },
+      { id: 54, unit: 8, en: "high in nutrition", ja: "栄養価が高い" },
+      { id: 55, unit: 8, en: "do not use harmful chemicals", ja: "有害な化学物質を使わない" },
+      { id: 56, unit: 8, en: "protect the environment", ja: "環境を守る" },
+      { id: 57, unit: 8, en: "support producers", ja: "生産者を支援する" }
+    ];
+
+    // =========================================================================
+    // 2. データベース定義：文法解説＆キー例文（Unit 7 分詞 / Unit 8 比較）
+    // =========================================================================
+    const GRAMMAR_FACTS = [
+      {
+        factId: "7-A", unit: 7, code: "factA", title: "名詞を修飾する（現在分詞・過去分詞）",
+        rule: "名詞を後ろから（または前から）修飾する。能動・進行なら現在分詞（-ing）、受動・完了なら過去分詞（-ed / 不規則変化）。",
+        trap: "分詞1語だけなら名詞の前、語句を伴う（〜ing O / 〜ed by ... など）なら名詞の後ろに置くのが基本。",
+        examples: [
+          { en: "The man eating popcorn is my friend Bill.", ja: "ポップコーンを食べている男性は私の友人のビルです。" },
+          { en: "This is the picture painted by my father.", ja: "これは私の父によって描かれた絵です。" }
+        ]
+      },
+      {
+        factId: "7-B", unit: 7, code: "factB", title: "説明型（SVC）の現在分詞・過去分詞",
+        rule: "主語（S）の状態や動作の継続を表す補語（C）として分詞を用いる（keep 〜ing / get・remain + 過去分詞 など）。",
+        trap: "「〜し続ける」は keep + -ing、「〜される／〜されたままになる」は get / remain + 過去分詞に注意。",
+        examples: [
+          { en: "The baby kept crying.", ja: "その赤ちゃんはずっと泣き続けていた。" },
+          { en: "My racket got broken during the match.", ja: "私のラケットは試合中に壊れてしまった。" }
+        ]
+      },
+      {
+        factId: "7-C", unit: 7, code: "factC", title: "目的語説明型（SVOC）の現在分詞・過去分詞",
+        rule: "「S + V + O + C」で、O（目的語）がどのような状態・動作にあるかを分詞（C）で説明する。",
+        trap: "OとCの論理関係に注目！Oが能動なら -ing、Oが受動なら過去分詞（have + O + 過去分詞 / keep + O + 過去分詞）。",
+        examples: [
+          { en: "Sorry to keep you waiting.", ja: "お待たせしてすみません。" },
+          { en: "Keep the door locked.", ja: "ドアに鍵をかけたままにしておきなさい。" },
+          { en: "I saw Mary crossing the street.", ja: "私はメアリーが通りを渡っているのを見た。" },
+          { en: "I had my hair cut yesterday.", ja: "私は昨日、髪を切ってもらった。" }
+        ]
+      },
+      {
+        factId: "7-D", unit: 7, code: "factD", title: "動詞句の修飾",
+        rule: "be busy doing（〜するのに忙しい）や、主語の様子を添える分詞（came home disappointed など）で動詞句の状況を補う。",
+        trap: "感情を表す分詞は「感情を与える側＝現在分詞（-ing）」「感情を受ける側（人）＝過去分詞（-ed）」を意識。",
+        examples: [
+          { en: "I was busy doing my homework.", ja: "私は宿題をするのに忙しかった。" },
+          { en: "My daughter came home disappointed.", ja: "私の娘はがっかりして帰宅した。" }
+        ]
+      },
+      {
+        factId: "7-E", unit: 7, code: "factE", title: "文の修飾（分詞構文・付帯状況のwith・慣用表現）",
+        rule: "副詞節を簡潔にした分詞構文。主節より前の出来事は Having + 過去分詞、付帯状況は with + O + 分詞、慣用は Judging from ~ など。",
+        trap: "受動の分詞構文では Being / Having been が省略されて過去分詞から始まるパターン（Pleased by ~）が頻出。",
+        examples: [
+          { en: "She accepted the prize, smiling happily.", ja: "彼女はうれしそうにほほ笑みながらその賞を受け取った。" },
+          { en: "Pleased by her test result, she jumped for joy.", ja: "テストの結果に喜んで、彼女は小躍りした。" },
+          { en: "Having visited New York before, she knew the good restaurants.", ja: "以前ニューヨークを訪れたことがあったので、彼女はおいしいレストランを知っていた。" },
+          { en: "I listened to the music with my heart beating.", ja: "私は胸をドキドキさせながらその音楽を聴いた。" },
+          { en: "Judging from the sky, it's going to snow tonight.", ja: "空模様から判断すると、今夜は雪が降りそうだ。" }
+        ]
+      },
+      {
+        factId: "8-A", unit: 8, code: "factA", title: "原級を用いた比較表現（同じくらい～）",
+        rule: "as + 原級 + as で「〜と同じくらい…」。否定は not as [so] + 原級 + as（〜ほど…ではない）。倍数は「倍数 + as + 原級 + as」。",
+        trap: "as と as の間は必ず原級！可算名詞の複数形には many、不可算名詞には much を使う。",
+        examples: [
+          { en: "Tom is as tall as Mary.", ja: "トムはメアリーと同じくらいの背の高さだ。" },
+          { en: "I have as many CDs as Ken.", ja: "私はケンと同じくらいの数のCDを持っている。" },
+          { en: "I'm not as tall as him.", ja: "私は彼ほど背が高くない。" },
+          { en: "Our new cafeteria is twice as large as the old one.", ja: "私たちの新しいカフェテリアは古いものの2倍の広さだ。" }
+        ]
+      },
+      {
+        factId: "8-B", unit: 8, code: "factB", title: "比較級を用いた比較表現（より～）",
+        rule: "短い語は -er、長い語・副詞の多くは more + 原級。比較級を強めるときは much / far / even / a lot を前に置く。",
+        trap: "比較級の強調に very は不可！副詞として修飾したいときは slowly のように副詞形にする。",
+        examples: [
+          { en: "Please drive more slowly.", ja: "もっとゆっくり運転してください。" },
+          { en: "I became taller than him.", ja: "私は彼より背が高くなった。" },
+          { en: "Fruit is much cheaper in my country than in Japan.", ja: "私の国では日本より果物がずっと安い。" }
+        ]
+      },
+      {
+        factId: "8-C", unit: 8, code: "factC", title: "最上級を用いた比較表現（もっとも～）",
+        rule: "the + 最上級（副詞では the を省略することもある）。範囲を表す前置詞は単数・集団なら in、複数・数字なら of。",
+        trap: "in his class（単数の集団）と of the three（3つ・複数）の前置詞の使い分けは定期テストの超頻出ポイント。",
+        examples: [
+          { en: "Oh, that's the best idea.", ja: "ああ、それは最高のアイデアだ。" },
+          { en: "Who speaks English the most fluently in your family?", ja: "あなたの家族の中で誰が一番流暢に英語を話しますか？" },
+          { en: "Tom is the tallest in his class.", ja: "トムはクラスで一番背が高い。" },
+          { en: "Tom is the tallest of the three.", ja: "トムは3人の中で一番背が高い。" }
+        ]
+      },
+      {
+        factId: "8-D", unit: 8, code: "factD", title: "様々な比較表現（重要構文・強調・劣等・序数）",
+        rule: "比較級 and 比較級（ますます〜）、The + 比較級, the + 比較級（〜すればするほど…）、less + 原級 + than（〜より…でない）、by far + 最上級、the + 序数 + 最上級、one of the + 最上級 + 複数名詞。",
+        trap: "one of the + 最上級 の後ろは必ず複数名詞！The older ..., the wiser ... は両方とも比較級にする。",
+        examples: [
+          { en: "Your English is getting better and better.", ja: "あなたの英語はますます上達している。" },
+          { en: "The older you get, the wiser you become.", ja: "年をとればとるほど、ますます賢くなる。" },
+          { en: "This dictionary is less useful than that one.", ja: "この辞書はあの辞書ほど役に立たない。" },
+          { en: "This is by far the best restaurant in town.", ja: "ここは町で断トツ一番のレストランだ。" },
+          { en: "K2 is the second highest mountain in the world.", ja: "K2は世界で2番目に高い山だ。" },
+          { en: "Boston is one of the oldest cities in the U.S.", ja: "ボストンはアメリカで最も古い都市の1つだ。" }
+        ]
+      }
+    ];
+
+    // =========================================================================
+    // 3. データベース定義：文法 実践演習問題プール（全76問：基本36問 ＋ 追加40問）
+    //    すべての問題が 4モード（四択・空欄補充・並べ替え・英訳）に完全対応
+    // =========================================================================
+    const QUIZ_QUESTIONS = [
+      // =======================================================================
+      // [基本キー例文ベース 36問] (id: q1 〜 q36)
+      // =======================================================================
+      // --- Unit 7: factA ---
+      {
+        id: "q1", unit: 7, factId: "7-A", isAdded: false,
+        blankSentence: "The man (      ) popcorn is my friend Bill.",
+        ja: "ポップコーンを食べている男性は私の友人のビルです。",
+        choices: ["eating", "eaten", "eats", "to eaten"],
+        blankAnswer: "eating",
+        acceptBlanks: ["eating"],
+        hint: "eat（食べる）を適切な分詞に変える",
+        orderChunks: ["The man", "eating", "popcorn", "is", "my friend Bill."],
+        fullEn: "The man eating popcorn is my friend Bill.",
+        altFullEn: ["The man who is eating popcorn is my friend Bill."],
+        explanation: "先行する名詞 The man がポップコーンを「食べている（能動）」関係なので、現在分詞 eating を後ろから修飾させます。"
+      },
+      {
+        id: "q2", unit: 7, factId: "7-A", isAdded: false,
+        blankSentence: "This is the picture (          ) by my father.",
+        ja: "これは私の父によって描かれた絵です。",
+        choices: ["painted", "painting", "paints", "to paint"],
+        blankAnswer: "painted",
+        acceptBlanks: ["painted"],
+        hint: "paint（描く）を適切な形に変える",
+        orderChunks: ["This is", "the picture", "painted", "by", "my father."],
+        fullEn: "This is the picture painted by my father.",
+        altFullEn: ["This is a picture painted by my father."],
+        explanation: "the picture（絵）は父によって「描かれた（受動）」関係なので、過去分詞 painted を使います。"
+      },
+      {
+        id: "q3", unit: 7, factId: "7-A", isAdded: false,
+        blankSentence: "Look at the (      ) baby in the bed.",
+        ja: "ベッドで眠っている赤ちゃんを見てごらん。",
+        choices: ["sleeping", "slept", "sleep", "sleeps"],
+        blankAnswer: "sleeping",
+        acceptBlanks: ["sleeping"],
+        hint: "sleep（眠る）を1語の分詞に変える",
+        orderChunks: ["Look at", "the sleeping", "baby", "in", "the bed."],
+        fullEn: "Look at the sleeping baby in the bed.",
+        altFullEn: ["Look at the baby sleeping in the bed."],
+        explanation: "「眠っている赤ちゃん」という能動の意味で、分詞1語だけの場合は名詞（baby）の直前に置きます。"
+      },
+      {
+        id: "q4", unit: 7, factId: "7-A", isAdded: false,
+        blankSentence: "The people (          ) that language are very kind.",
+        ja: "その言語を話している人々はとても親切だ。",
+        choices: ["speaking", "spoken", "speak", "to speak"],
+        blankAnswer: "speaking",
+        acceptBlanks: ["speaking"],
+        hint: "speak（話す）を適切な形に変える",
+        orderChunks: ["The people", "speaking", "that language", "are", "very kind."],
+        fullEn: "The people speaking that language are very kind.",
+        altFullEn: ["People speaking that language are very kind."],
+        explanation: "「その言語を話している人々」は The people speaking that language と現在分詞の句で後ろから修飾します。"
+      },
+
+      // --- Unit 7: factB ---
+      {
+        id: "q5", unit: 7, factId: "7-B", isAdded: false,
+        blankSentence: "The baby kept (      ).",
+        ja: "その赤ちゃんはずっと泣き続けていた。",
+        choices: ["crying", "cried", "cry", "to cry"],
+        blankAnswer: "crying",
+        acceptBlanks: ["crying"],
+        hint: "cry（泣く）を適切な形に変える",
+        orderChunks: ["The", "baby", "kept", "crying."],
+        fullEn: "The baby kept crying.",
+        altFullEn: [],
+        explanation: "keep + -ing で「～し続ける」という説明型（SVC）の重要表現です。"
+      },
+      {
+        id: "q6", unit: 7, factId: "7-B", isAdded: false,
+        blankSentence: "My racket got (          ) during the match.",
+        ja: "私のラケットは試合中に壊れてしまった。",
+        choices: ["broken", "breaking", "break", "broke"],
+        blankAnswer: "broken",
+        acceptBlanks: ["broken"],
+        hint: "break（壊す）を適切な形に変える",
+        orderChunks: ["My racket", "got", "broken", "during", "the match."],
+        fullEn: "My racket got broken during the match.",
+        altFullEn: ["My racket was broken during the match."],
+        explanation: "主語の My racket が「壊される（受動）」状態になるため、get + 過去分詞（broken）を使います。"
+      },
+      {
+        id: "q7", unit: 7, factId: "7-B", isAdded: false,
+        blankSentence: "Everyone remained (      ) during the speech.",
+        ja: "スピーチの間、みんな座ったままだった。",
+        choices: ["seated", "seating", "seat", "to seat"],
+        blankAnswer: "seated",
+        acceptBlanks: ["seated", "sitting"],
+        hint: "seat（着席させる）を状態を表す分詞に変える",
+        orderChunks: ["Everyone", "remained", "seated", "during", "the speech."],
+        fullEn: "Everyone remained seated during the speech.",
+        altFullEn: ["Everyone remained sitting during the speech."],
+        explanation: "seat は「～を着席させる」という他動詞なので、「人が座っている状態」を表すときは過去分詞 seated を使います（sitting も可）。"
+      },
+
+      // --- Unit 7: factC ---
+      {
+        id: "q8", unit: 7, factId: "7-C", isAdded: false,
+        blankSentence: "Sorry to keep you (      ).",
+        ja: "お待たせしてすみません。",
+        choices: ["waiting", "waited", "wait", "to wait"],
+        blankAnswer: "waiting",
+        acceptBlanks: ["waiting"],
+        hint: "wait（待つ）を適切な形に変える",
+        orderChunks: ["Sorry", "to", "keep", "you", "waiting."],
+        fullEn: "Sorry to keep you waiting.",
+        altFullEn: ["I'm sorry to keep you waiting.", "I am sorry to keep you waiting."],
+        explanation: "目的語 you が「待っている（能動）」状態なので、keep + O + -ing の形にします。"
+      },
+      {
+        id: "q9", unit: 7, factId: "7-C", isAdded: false,
+        blankSentence: "Keep the door (          ).",
+        ja: "ドアに鍵をかけたままにしておきなさい。",
+        choices: ["locked", "locking", "lock", "to lock"],
+        blankAnswer: "locked",
+        acceptBlanks: ["locked"],
+        hint: "lock（鍵をかける）を適切な形に変える",
+        orderChunks: ["Keep", "the", "door", "locked."],
+        fullEn: "Keep the door locked.",
+        altFullEn: [],
+        explanation: "目的語 the door は「鍵をかけられる（受動）」側なので、過去分詞 locked を使います。"
+      },
+      {
+        id: "q10", unit: 7, factId: "7-C", isAdded: false,
+        blankSentence: "I had my hair (      ) yesterday.",
+        ja: "私は昨日、髪を切ってもらった。",
+        choices: ["cut", "cutting", "to cut", "cuts"],
+        blankAnswer: "cut",
+        acceptBlanks: ["cut"],
+        hint: "cut（切る）の過去分詞形を入れる",
+        orderChunks: ["I", "had", "my hair", "cut", "yesterday."],
+        fullEn: "I had my hair cut yesterday.",
+        altFullEn: ["I got my hair cut yesterday."],
+        explanation: "「have + O + 過去分詞」で「Oを～してもらう」を表します。cut の過去分詞は cut です。"
+      },
+      {
+        id: "q11", unit: 7, factId: "7-C", isAdded: false,
+        blankSentence: "I saw Mary (      ) the street.",
+        ja: "私はメアリーが通りを渡っているのを見た。",
+        choices: ["crossing", "crossed", "to cross", "crosses"],
+        blankAnswer: "crossing",
+        acceptBlanks: ["crossing"],
+        hint: "cross（渡る）を進行中の動作を表す分詞に変える",
+        orderChunks: ["I", "saw", "Mary", "crossing", "the street."],
+        fullEn: "I saw Mary crossing the street.",
+        altFullEn: [],
+        explanation: "知覚動詞 see + O + -ing で「Oが～しているのを見る」という進行中の動作を表します。"
+      },
+      {
+        id: "q12", unit: 7, factId: "7-C", isAdded: false,
+        blankSentence: "I couldn't make myself (          ) in English.",
+        ja: "私は英語で自分の言うことを理解してもらえなかった。",
+        choices: ["understood", "understanding", "understand", "to understand"],
+        blankAnswer: "understood",
+        acceptBlanks: ["understood"],
+        hint: "understand（理解する）の過去分詞形を入れる",
+        orderChunks: ["I couldn't", "make", "myself", "understood", "in English."],
+        fullEn: "I couldn't make myself understood in English.",
+        altFullEn: ["I could not make myself understood in English."],
+        explanation: "「自分の英語（myself）が理解される（understood）」という受動関係になるため、make oneself understood（自分の言うことを理解させる）という過去分詞の形になります。"
+      },
+
+      // --- Unit 7: factD ---
+      {
+        id: "q13", unit: 7, factId: "7-D", isAdded: false,
+        blankSentence: "I was busy (          ) my homework.",
+        ja: "私は宿題をするのに忙しかった。",
+        choices: ["doing", "done", "do", "to do"],
+        blankAnswer: "doing",
+        acceptBlanks: ["doing"],
+        hint: "do（する）を適切な形に変える",
+        orderChunks: ["I", "was busy", "doing", "my", "homework."],
+        fullEn: "I was busy doing my homework.",
+        altFullEn: [],
+        explanation: "be busy -ing で「～するのに忙しい」という定番の重要表現です。"
+      },
+      {
+        id: "q14", unit: 7, factId: "7-D", isAdded: false,
+        blankSentence: "My daughter came home (      ).",
+        ja: "私の娘はがっかりして帰宅した。",
+        choices: ["disappointed", "disappointing", "disappoint", "to disappoint"],
+        blankAnswer: "disappointed",
+        acceptBlanks: ["disappointed"],
+        hint: "disappoint（がっかりさせる）を人の感情を表す分詞に変える",
+        orderChunks: ["My daughter", "came", "home", "disappointed."],
+        fullEn: "My daughter came home disappointed.",
+        altFullEn: [],
+        explanation: "disappoint は「人をがっかりさせる」という意味なので、娘が「がっかりさせられた（感情を受けた）」場合は過去分詞 disappointed を使います。"
+      },
+
+      // --- Unit 7: factE ---
+      {
+        id: "q15", unit: 7, factId: "7-E", isAdded: false,
+        blankSentence: "(      ) by her test result, she jumped for joy.",
+        ja: "テストの結果に喜んで、彼女は小躍りした。",
+        choices: ["Pleased", "Pleasing", "Please", "Having pleased"],
+        blankAnswer: "Pleased",
+        acceptBlanks: ["Pleased", "pleased"],
+        hint: "please（喜ばせる）を過去分詞に変える（文頭なので大文字）",
+        orderChunks: ["Pleased", "by her test result,", "she", "jumped", "for joy."],
+        fullEn: "Pleased by her test result, she jumped for joy.",
+        altFullEn: [],
+        explanation: "元の文は As she was pleased by her test result で、受身の分詞構文では Being が省略され過去分詞 Pleased から始まります。"
+      },
+      {
+        id: "q16", unit: 7, factId: "7-E", isAdded: false,
+        blankSentence: "(      ) visited New York before, she knew the good restaurants.",
+        ja: "以前ニューヨークを訪れたことがあったので、彼女はおいしいレストランを知っていた。",
+        choices: ["Having", "Have", "Had", "Being"],
+        blankAnswer: "Having",
+        acceptBlanks: ["Having", "having"],
+        hint: "主節より前の時制を表す完了形分詞構文の最初の1語",
+        orderChunks: ["Having visited", "New York before,", "she knew", "the good", "restaurants."],
+        fullEn: "Having visited New York before, she knew the good restaurants.",
+        altFullEn: [],
+        explanation: "「以前訪れたこと（過去完了・過去）」が「知っていた（過去）」よりも前の時制を表すため、完了形の分詞構文「Having + 過去分詞」を使います。"
+      },
+      {
+        id: "q17", unit: 7, factId: "7-E", isAdded: false,
+        blankSentence: "I listened to the music with my heart (          ).",
+        ja: "私は胸をドキドキさせながらその音楽を聴いた。",
+        choices: ["beating", "beaten", "beat", "to beat"],
+        blankAnswer: "beating",
+        acceptBlanks: ["beating"],
+        hint: "beat（鼓動する）を適切な分詞に変える",
+        orderChunks: ["I listened to", "the music", "with", "my heart", "beating."],
+        fullEn: "I listened to the music with my heart beating.",
+        altFullEn: [],
+        explanation: "付帯状況の with「with + O + -ing」で「Oを～させながら」を表します。心臓が鼓動する（能動）ので beating です。"
+      },
+      {
+        id: "q18", unit: 7, factId: "7-E", isAdded: false,
+        blankSentence: "(          ) from the sky, it's going to snow tonight.",
+        ja: "空模様から判断すると、今夜は雪が降りそうだ。",
+        choices: ["Judging", "Judged", "Judge", "To judge"],
+        blankAnswer: "Judging",
+        acceptBlanks: ["Judging", "judging"],
+        hint: "judge（判断する）を慣用分詞構文にする（文頭なので大文字）",
+        orderChunks: ["Judging from", "the sky,", "it's going to", "snow", "tonight."],
+        fullEn: "Judging from the sky, it's going to snow tonight.",
+        altFullEn: ["Judging from the sky, it is going to snow tonight.", "Judging from the sky, it will snow tonight."],
+        explanation: "Judging from ~（～から判断すると）は主語が一般の人であるため主節の主語と一致しなくても使える慣用的な独立分詞構文です。"
+      },
+
+      // --- Unit 8: factA ---
+      {
+        id: "q19", unit: 8, factId: "8-A", isAdded: false,
+        blankSentence: "Our new cafeteria is (      ) as large as the old one.",
+        ja: "私たちの新しいカフェテリアは古いものの2倍の広さだ。",
+        choices: ["twice", "two", "second", "double"],
+        blankAnswer: "twice",
+        acceptBlanks: ["twice"],
+        hint: "「2倍」を表す1語を入れる",
+        orderChunks: ["Our new cafeteria is", "twice", "as", "large", "as the old one."],
+        fullEn: "Our new cafeteria is twice as large as the old one.",
+        altFullEn: [],
+        explanation: "倍数表現は「倍数詞（twice） + as + 原級 + as」の語順になります。"
+      },
+      {
+        id: "q20", unit: 8, factId: "8-A", isAdded: false,
+        blankSentence: "I have as (      ) CDs as Ken.",
+        ja: "私はケンと同じくらいの数のCDを持っている。",
+        choices: ["many", "much", "more", "most"],
+        blankAnswer: "many",
+        acceptBlanks: ["many"],
+        hint: "数えられる名詞（CDs）につく「たくさんの」の原級",
+        orderChunks: ["I", "have", "as many", "CDs", "as Ken."],
+        fullEn: "I have as many CDs as Ken.",
+        altFullEn: [],
+        explanation: "CDs は数えられる名詞（可算名詞）の複数形なので、原級の many を使います。"
+      },
+      {
+        id: "q21", unit: 8, factId: "8-A", isAdded: false,
+        blankSentence: "Tom is (      ) tall as Mary.",
+        ja: "トムはメアリーと同じくらいの背の高さだ。",
+        choices: ["as", "so", "more", "than"],
+        blankAnswer: "as",
+        acceptBlanks: ["as"],
+        hint: "原級比較「～と同じくらい…」を作る単語",
+        orderChunks: ["Tom", "is", "as tall", "as", "Mary."],
+        fullEn: "Tom is as tall as Mary.",
+        altFullEn: [],
+        explanation: "原級比較の基本形「as + 原級 + as」です。"
+      },
+      {
+        id: "q22", unit: 8, factId: "8-A", isAdded: false,
+        blankSentence: "This smartphone is three times (      ) expensive as that one.",
+        ja: "このスマートフォンはあのスマートフォンの3倍高価だ。",
+        choices: ["as", "more", "than", "so"],
+        blankAnswer: "as",
+        acceptBlanks: ["as"],
+        hint: "倍数 + (   ) + 原級 + as の形",
+        orderChunks: ["This smartphone is", "three times", "as expensive", "as", "that one."],
+        fullEn: "This smartphone is three times as expensive as that one.",
+        altFullEn: [],
+        explanation: "「3倍～だ」は three times as + 原級 + as の形になります。"
+      },
+
+      // --- Unit 8: factB ---
+      {
+        id: "q23", unit: 8, factId: "8-B", isAdded: false,
+        blankSentence: "Fruit is (      ) cheaper in my country than in Japan.",
+        ja: "私の国では日本より果物がずっと安い。",
+        choices: ["much", "very", "more", "so"],
+        blankAnswer: "much",
+        acceptBlanks: ["much", "far", "even"],
+        hint: "比較級を「ずっと」と強調する語（mから始まる4文字）",
+        orderChunks: ["Fruit is", "much cheaper", "in my country", "than", "in Japan."],
+        fullEn: "Fruit is much cheaper in my country than in Japan.",
+        altFullEn: ["Fruit is far cheaper in my country than in Japan."],
+        explanation: "比較級（cheaper）を「ずっと」と強調するときは much / far / a lot / even を使います。very は使えません！"
+      },
+      {
+        id: "q24", unit: 8, factId: "8-B", isAdded: false,
+        blankSentence: "Please drive more (          ).",
+        ja: "もっとゆっくり運転してください。",
+        choices: ["slowly", "slow", "slower", "slowest"],
+        blankAnswer: "slowly",
+        acceptBlanks: ["slowly"],
+        hint: "slow（遅い）を動詞を修飾する副詞に変える",
+        orderChunks: ["Please", "drive", "more", "slowly."],
+        fullEn: "Please drive more slowly.",
+        altFullEn: [],
+        explanation: "動詞 drive を修飾するため副詞 slowly の比較級 more slowly にします。"
+      },
+      {
+        id: "q25", unit: 8, factId: "8-B", isAdded: false,
+        blankSentence: "I became (      ) than him.",
+        ja: "私は彼より背が高くなった。",
+        choices: ["taller", "more tall", "tallest", "as tall"],
+        blankAnswer: "taller",
+        acceptBlanks: ["taller"],
+        hint: "tall（背が高い）の比較級",
+        orderChunks: ["I", "became", "taller", "than", "him."],
+        fullEn: "I became taller than him.",
+        altFullEn: ["I became taller than he did.", "I became taller than he."],
+        explanation: "1音節の形容詞 tall の比較級は語尾に -er をつけて taller にします。"
+      },
+      {
+        id: "q26", unit: 8, factId: "8-B", isAdded: false,
+        blankSentence: "Which is (      ), coffee or tea?",
+        ja: "コーヒーと紅茶ではどちらが好きですか？",
+        choices: ["better", "best", "good", "the better"],
+        blankAnswer: "better",
+        acceptBlanks: ["better"],
+        hint: "well / good の比較級",
+        orderChunks: ["Which", "is", "better,", "coffee", "or tea?"],
+        fullEn: "Which is better, coffee or tea?",
+        altFullEn: [],
+        explanation: "2つのもの（coffee or tea）を比べる疑問文では比較級（better）を使います。"
+      },
+
+      // --- Unit 8: factC ---
+      {
+        id: "q27", unit: 8, factId: "8-C", isAdded: false,
+        blankSentence: "Tom is the tallest (      ) his class.",
+        ja: "トムはクラスで一番背が高い。",
+        choices: ["in", "of", "at", "than"],
+        blankAnswer: "in",
+        acceptBlanks: ["in"],
+        hint: "場所・集団（his class）の前につく前置詞",
+        orderChunks: ["Tom", "is", "the tallest", "in", "his class."],
+        fullEn: "Tom is the tallest in his class.",
+        altFullEn: [],
+        explanation: "his class のように「場所・集団を表す単数名詞」が後ろに続くときは前置詞 in を使います。"
+      },
+      {
+        id: "q28", unit: 8, factId: "8-C", isAdded: false,
+        blankSentence: "Tom is the tallest (      ) the three.",
+        ja: "トムは3人の中で一番背が高い。",
+        choices: ["of", "in", "from", "among"],
+        blankAnswer: "of",
+        acceptBlanks: ["of"],
+        hint: "複数・数字（the three）の前につく前置詞",
+        orderChunks: ["Tom", "is", "the tallest", "of", "the three."],
+        fullEn: "Tom is the tallest of the three.",
+        altFullEn: [],
+        explanation: "the three のように「複数・数字・all」が後ろに続くときは前置詞 of を使います。"
+      },
+      {
+        id: "q29", unit: 8, factId: "8-C", isAdded: false,
+        blankSentence: "Who speaks English the most (          ) in your family?",
+        ja: "あなたの家族の中で誰が一番流暢に英語を話しますか？",
+        choices: ["fluently", "fluent", "more fluently", "most fluent"],
+        blankAnswer: "fluently",
+        acceptBlanks: ["fluently"],
+        hint: "fluent（流暢な）を副詞に変える",
+        orderChunks: ["Who", "speaks English", "the most fluently", "in", "your family?"],
+        fullEn: "Who speaks English the most fluently in your family?",
+        altFullEn: [],
+        explanation: "-ly で終わる副詞（fluently）の最上級は the most fluently とします。"
+      },
+      {
+        id: "q30", unit: 8, factId: "8-C", isAdded: false,
+        blankSentence: "Oh, that's the (          ) idea.",
+        ja: "ああ、それは最高のアイデアだ。",
+        choices: ["best", "better", "good", "most good"],
+        blankAnswer: "best",
+        acceptBlanks: ["best"],
+        hint: "good（良い）の最上級",
+        orderChunks: ["Oh,", "that's", "the", "best", "idea."],
+        fullEn: "Oh, that's the best idea.",
+        altFullEn: ["Oh, that is the best idea."],
+        explanation: "good の変化は good - better - best です。"
+      },
+
+      // --- Unit 8: factD ---
+      {
+        id: "q31", unit: 8, factId: "8-D", isAdded: false,
+        blankSentence: "The (      ) you get, the wiser you become.",
+        ja: "年をとればとるほど、ますます賢くなる。",
+        choices: ["older", "old", "oldest", "more old"],
+        blankAnswer: "older",
+        acceptBlanks: ["older"],
+        hint: "old（年をとった）の比較級",
+        orderChunks: ["The older", "you get,", "the wiser", "you", "become."],
+        fullEn: "The older you get, the wiser you become.",
+        altFullEn: [],
+        explanation: "「The + 比較級 + S + V, the + 比較級 + S + V」で「～すればするほど、ますます…」を表す超重要構文です。"
+      },
+      {
+        id: "q32", unit: 8, factId: "8-D", isAdded: false,
+        blankSentence: "Boston is one of the oldest (      ) in the U.S.",
+        ja: "ボストンはアメリカで最も古い都市の1つだ。",
+        choices: ["cities", "city", "citys", "a city"],
+        blankAnswer: "cities",
+        acceptBlanks: ["cities"],
+        hint: "city（都市）の複数形",
+        orderChunks: ["Boston is", "one of", "the oldest", "cities", "in the U.S."],
+        fullEn: "Boston is one of the oldest cities in the U.S.",
+        altFullEn: ["Boston is one of the oldest cities in the US."],
+        explanation: "「one of the + 最上級 + 複数名詞」のルールにより、必ず複数形の cities にします。"
+      },
+      {
+        id: "q33", unit: 8, factId: "8-D", isAdded: false,
+        blankSentence: "Your English is getting (      ) and better.",
+        ja: "あなたの英語はますます上達している。",
+        choices: ["better", "good", "best", "more"],
+        blankAnswer: "better",
+        acceptBlanks: ["better"],
+        hint: "「比較級 and 比較級」で「ますます～」",
+        orderChunks: ["Your English", "is getting", "better", "and", "better."],
+        fullEn: "Your English is getting better and better.",
+        altFullEn: [],
+        explanation: "「比較級 and 比較級」で「ますます～」を表します。good の比較級は better です。"
+      },
+      {
+        id: "q34", unit: 8, factId: "8-D", isAdded: false,
+        blankSentence: "This is (      ) the best restaurant in town.",
+        ja: "ここは町で断トツ一番のレストランだ。",
+        choices: ["by far", "much", "very", "too"],
+        blankAnswer: "by far",
+        acceptBlanks: ["by far"],
+        hint: "最上級を「断トツで」と強調する2語（bから始まる）",
+        orderChunks: ["This is", "by far", "the best", "restaurant", "in town."],
+        fullEn: "This is by far the best restaurant in town.",
+        altFullEn: [],
+        explanation: "最上級（the best）を「断トツで・はるかに」と強調するときは by far（または much）を使います。"
+      },
+      {
+        id: "q35", unit: 8, factId: "8-D", isAdded: false,
+        blankSentence: "K2 is the (          ) highest mountain in the world.",
+        ja: "K2は世界で2番目に高い山だ。",
+        choices: ["second", "two", "twice", "next"],
+        blankAnswer: "second",
+        acceptBlanks: ["second", "2nd"],
+        hint: "「2番目に」を表す序数",
+        orderChunks: ["K2 is", "the second", "highest", "mountain", "in the world."],
+        fullEn: "K2 is the second highest mountain in the world.",
+        altFullEn: [],
+        explanation: "「the + 序数（second） + 最上級」で「～番目に…」を表します。"
+      },
+      {
+        id: "q36", unit: 8, factId: "8-D", isAdded: false,
+        blankSentence: "This dictionary is (      ) useful than that one.",
+        ja: "この辞書はあの辞書ほど役に立たない。",
+        choices: ["less", "fewer", "little", "least"],
+        blankAnswer: "less",
+        acceptBlanks: ["less"],
+        hint: "「より～でない」を表す劣等比較の1語",
+        orderChunks: ["This dictionary", "is", "less useful", "than", "that one."],
+        fullEn: "This dictionary is less useful than that one.",
+        altFullEn: ["This dictionary is less useful than that dictionary."],
+        explanation: "「less + 原級 + than ~」で「～ほど…でない」という劣等比較を表します。辞書（dictionary）の繰り返しを避けるため代名詞 one を使います。"
+      },
+
+      // =======================================================================
+      // [追加実践応用問題 40問] (id: q37 〜 q76 / Q1 〜 Q40)
+      // =======================================================================
+      {
+        id: "q37", unit: 7, factId: "7-A", isAdded: true,
+        blankSentence: "Look at the boy (          ) a novel under the tree.",
+        ja: "木の下で小説を読んでいる少年を見てごらん。",
+        choices: ["reading", "read", "is reading", "has read"],
+        blankAnswer: "reading",
+        acceptBlanks: ["reading"],
+        hint: "read（読む）を現在分詞に変える",
+        orderChunks: ["Look at", "the boy", "reading a novel", "under", "the tree."],
+        fullEn: "Look at the boy reading a novel under the tree.",
+        altFullEn: [],
+        explanation: "名詞 the boy を後ろから修飾する現在分詞「〜している（能動）」を用います。"
+      },
+      {
+        id: "q38", unit: 7, factId: "7-A", isAdded: true,
+        blankSentence: "The letter (          ) in French was difficult for me to understand.",
+        ja: "フランス語で書かれたその手紙は、私にとって理解するのが難しかった。",
+        choices: ["written", "writing", "wrote", "to write"],
+        blankAnswer: "written",
+        acceptBlanks: ["written"],
+        hint: "write（書く）の過去分詞形を入れる",
+        orderChunks: ["The letter", "written in French", "was difficult", "for me", "to understand."],
+        fullEn: "The letter written in French was difficult for me to understand.",
+        altFullEn: [],
+        explanation: "手紙はフランス語で「書かれる」受動関係なので、過去分詞 written を使います。"
+      },
+      {
+        id: "q39", unit: 7, factId: "7-B", isAdded: true,
+        blankSentence: "Although it was late, the children kept (          ) video games.",
+        ja: "遅い時間だったにもかかわらず、子どもたちはテレビゲームをし続けた。",
+        choices: ["playing", "play", "played", "to playing"],
+        blankAnswer: "playing",
+        acceptBlanks: ["playing"],
+        hint: "play（遊ぶ）を適切な形に変える",
+        orderChunks: ["Although it was late,", "the children", "kept", "playing", "video games."],
+        fullEn: "Although it was late, the children kept playing video games.",
+        altFullEn: [],
+        explanation: "keep + 〜ing で「〜し続ける」を表します（The baby kept crying の応用）。"
+      },
+      {
+        id: "q40", unit: 7, factId: "7-C", isAdded: true,
+        blankSentence: "When I got home, my little brother had his smartphone (          ).",
+        ja: "私が帰宅したとき、弟はスマートフォンを壊されてしまっていた。",
+        choices: ["broken", "break", "breaking", "to break"],
+        blankAnswer: "broken",
+        acceptBlanks: ["broken"],
+        hint: "break（壊す）の過去分詞形を入れる",
+        orderChunks: ["When I got home,", "my little brother", "had", "his smartphone", "broken."],
+        fullEn: "When I got home, my little brother had his smartphone broken.",
+        altFullEn: [],
+        explanation: "have + O + 過去分詞 で「Oを〜される（被害）」を表します。スマホは「壊される」側なので broken。"
+      },
+      {
+        id: "q41", unit: 7, factId: "7-C", isAdded: true,
+        blankSentence: "Could you keep me (          ) about the schedule change?",
+        ja: "予定の変更について、私に常に知らせておいてくれますか？",
+        choices: ["informed", "inform", "informing", "to inform"],
+        blankAnswer: "informed",
+        acceptBlanks: ["informed"],
+        hint: "inform（知らせる）を過去分詞に変える",
+        orderChunks: ["Could you", "keep me", "informed", "about", "the schedule change?"],
+        fullEn: "Could you keep me informed about the schedule change?",
+        altFullEn: [],
+        explanation: "keep + O + 過去分詞 で「Oを〜の状態に保つ」。人に情報を「知らせる（inform）」は受動で informed。"
+      },
+      {
+        id: "q42", unit: 7, factId: "7-D", isAdded: true,
+        blankSentence: "He walked out of the room without saying a word, (          ) angry.",
+        ja: "彼は一言も言わずに、怒った様子で部屋を出て行った。",
+        choices: ["looking", "look", "looked", "to look"],
+        blankAnswer: "looking",
+        acceptBlanks: ["looking"],
+        hint: "look（〜のように見える）を現在分詞に変える",
+        orderChunks: ["He walked out of", "the room", "without saying a word,", "looking", "angry."],
+        fullEn: "He walked out of the room without saying a word, looking angry.",
+        altFullEn: [],
+        explanation: "主語 He の様子・状態を表す分詞（動詞句修飾）。look + 形容詞 の形をとるため looking にします。"
+      },
+      {
+        id: "q43", unit: 7, factId: "7-E", isAdded: true,
+        blankSentence: "(          ) in a small town, she loves quiet places.",
+        ja: "小さな町で育ったので、彼女は静かな場所が大好きだ。",
+        choices: ["Raised", "Raising", "Having raising", "To raise"],
+        blankAnswer: "Raised",
+        acceptBlanks: ["Raised", "raised"],
+        hint: "raise（育てる）を過去分詞に変える（文頭なので大文字）",
+        orderChunks: ["Raised", "in a small town,", "she", "loves", "quiet places."],
+        fullEn: "Raised in a small town, she loves quiet places.",
+        altFullEn: [],
+        explanation: "主語 she が「育てられた」受動の分詞構文。Being raised の Being が省略された形です。"
+      },
+      {
+        id: "q44", unit: 7, factId: "7-E", isAdded: true,
+        blankSentence: "(          ) his wallet on the train, Ken couldn't buy lunch.",
+        ja: "電車に財布を忘れてしまったので、ケンは昼食を買えなかった。",
+        choices: ["Having lost", "Lose", "Lost", "Being lost"],
+        blankAnswer: "Having lost",
+        acceptBlanks: ["Having lost", "having lost"],
+        hint: "主節より前の出来事を表す完了形分詞構文（2語）",
+        orderChunks: ["Having lost", "his wallet", "on the train,", "Ken couldn't", "buy lunch."],
+        fullEn: "Having lost his wallet on the train, Ken couldn't buy lunch.",
+        altFullEn: ["Having lost his wallet on the train, Ken could not buy lunch."],
+        explanation: "主節の couldn't buy より前の出来事を表す完了形の分詞構文 Having + 過去分詞（Having lost）。"
+      },
+      {
+        id: "q45", unit: 7, factId: "7-E", isAdded: true,
+        blankSentence: "(          ) frankly, I don't think that plan will work.",
+        ja: "率直に言って、私はその計画がうまくいくとは思わない。",
+        choices: ["Speaking", "Speak", "Spoke", "Spoken"],
+        blankAnswer: "Speaking",
+        acceptBlanks: ["Speaking", "speaking"],
+        hint: "speak（話す）を慣用分詞構文にする（文頭なので大文字）",
+        orderChunks: ["Speaking frankly,", "I don't think", "that plan", "will", "work."],
+        fullEn: "Speaking frankly, I don't think that plan will work.",
+        altFullEn: ["Frankly speaking, I don't think that plan will work.", "Speaking frankly, I do not think that plan will work."],
+        explanation: "慣用的な独立分詞構文 Speaking frankly（率直に言えば）。Judging from ... とあわせて押さえましょう。"
+      },
+      {
+        id: "q46", unit: 8, factId: "8-A", isAdded: true,
+        blankSentence: "This room is not as (          ) as the conference room.",
+        ja: "この部屋は会議室ほど広くない。",
+        choices: ["wide", "wider", "widest", "most wide"],
+        blankAnswer: "wide",
+        acceptBlanks: ["wide"],
+        hint: "wide（広い）を原級のまま入れる",
+        orderChunks: ["This room", "is not", "as wide", "as", "the conference room."],
+        fullEn: "This room is not as wide as the conference room.",
+        altFullEn: ["This room isn't as wide as the conference room."],
+        explanation: "not as + 原級 + as ...（〜ほど…ではない）。as と as の間は必ず原級にします。"
+      },
+      {
+        id: "q47", unit: 8, factId: "8-A", isAdded: true,
+        blankSentence: "Our new school building is three times as (          ) as the old one.",
+        ja: "私たちの新しい校舎は、古い校舎の3倍の大きさだ。",
+        choices: ["large", "larger", "largest", "more large"],
+        blankAnswer: "large",
+        acceptBlanks: ["large"],
+        hint: "large（大きい）の原級を入れる",
+        orderChunks: ["Our new school building is", "three times", "as large", "as", "the old one."],
+        fullEn: "Our new school building is three times as large as the old one.",
+        altFullEn: [],
+        explanation: "倍率表現は 倍数 + as + 原級 + as ... の語順になります。"
+      },
+      {
+        id: "q48", unit: 8, factId: "8-B", isAdded: true,
+        blankSentence: "Please speak (          ) so everyone in the back can hear you.",
+        ja: "後ろにいる全員に聞こえるように、もっと大きな声で話してください。",
+        choices: ["louder", "loud", "loudest", "most loudly"],
+        blankAnswer: "louder",
+        acceptBlanks: ["louder", "more loudly"],
+        hint: "loud（大きな声で）の比較級",
+        orderChunks: ["Please", "speak louder", "so everyone", "in the back", "can hear you."],
+        fullEn: "Please speak louder so everyone in the back can hear you.",
+        altFullEn: ["Please speak more loudly so everyone in the back can hear you."],
+        explanation: "動詞 speak を修飾する副詞の比較級（より大きな声で）です。"
+      },
+      {
+        id: "q49", unit: 8, factId: "8-B", isAdded: true,
+        blankSentence: "My bag is (          ) heavier than yours because of the dictionaries.",
+        ja: "辞書のせいで、私のカバンはあなたのカバンよりずっと重い。",
+        choices: ["much", "very", "so", "too"],
+        blankAnswer: "much",
+        acceptBlanks: ["much", "far", "even"],
+        hint: "比較級 heavier を「ずっと」と強調する1語",
+        orderChunks: ["My bag is", "much heavier", "than yours", "because of", "the dictionaries."],
+        fullEn: "My bag is much heavier than yours because of the dictionaries.",
+        altFullEn: ["My bag is far heavier than yours because of the dictionaries."],
+        explanation: "比較級を強調するときは much（または far / even / a lot）を使います。very は使いません。"
+      },
+      {
+        id: "q50", unit: 8, factId: "8-D", isAdded: true,
+        blankSentence: "The (          ) you practice speaking English, the more confident you will become.",
+        ja: "英語を話す練習をすればするほど、より自信がつくでしょう。",
+        choices: ["more", "much", "most", "many"],
+        blankAnswer: "more",
+        acceptBlanks: ["more"],
+        hint: "much（たくさん）の比較級",
+        orderChunks: ["The more", "you practice speaking English,", "the more confident", "you will", "become."],
+        fullEn: "The more you practice speaking English, the more confident you will become.",
+        altFullEn: [],
+        explanation: "The + 比較級 ..., the + 比較級 ...（〜すればするほど、ますます…）。much の比較級 more を用います。"
+      },
+      {
+        id: "q51", unit: 8, factId: "8-D", isAdded: true,
+        blankSentence: "Mt. Fuji is (          ) highest mountain in Japan.",
+        ja: "富士山は日本で一番高い山だ。（※2番目に高い山なら the second highest）",
+        choices: ["the", "a", "second", "most"],
+        blankAnswer: "the",
+        acceptBlanks: ["the"],
+        hint: "最上級 highest の直前に必ずつく冠詞",
+        orderChunks: ["Mt. Fuji", "is", "the highest", "mountain", "in Japan."],
+        fullEn: "Mt. Fuji is the highest mountain in Japan.",
+        altFullEn: ["Mount Fuji is the highest mountain in Japan."],
+        explanation: "最上級の前には原則として定冠詞 the をつけます（2番目なら the second highest）。"
+      },
+      {
+        id: "q52", unit: 7, factId: "7-A", isAdded: true,
+        blankSentence: "The apples (          ) in Nagano are very sweet.",
+        ja: "長野で栽培されているリンゴはとても甘い。",
+        choices: ["grown", "growing", "grew", "grow"],
+        blankAnswer: "grown",
+        acceptBlanks: ["grown"],
+        hint: "grow（栽培する）の過去分詞形を入れる",
+        orderChunks: ["The apples", "grown", "in Nagano", "are", "very sweet."],
+        fullEn: "The apples grown in Nagano are very sweet.",
+        altFullEn: [],
+        explanation: "リンゴは栽培される側なので過去分詞 grown で後ろから修飾します。"
+      },
+      {
+        id: "q53", unit: 7, factId: "7-C", isAdded: true,
+        blankSentence: "I saw a dog (          ) across the park this morning.",
+        ja: "今朝、犬が公園を横切って走っているのを見た。",
+        choices: ["running", "ran", "run", "to run"],
+        blankAnswer: "running",
+        acceptBlanks: ["running"],
+        hint: "run（走る）を現在分詞に変える（nを重ねる）",
+        orderChunks: ["I saw", "a dog", "running", "across the park", "this morning."],
+        fullEn: "I saw a dog running across the park this morning.",
+        altFullEn: [],
+        explanation: "知覚動詞 see + O + 現在分詞 で「Oが〜しているのを見る」。run は running にします。"
+      },
+      {
+        id: "q54", unit: 7, factId: "7-E", isAdded: true,
+        blankSentence: "She went to bed with the TV (          ) on.",
+        ja: "彼女はテレビをつけたまま寝てしまった。",
+        choices: ["turned", "turning", "turn", "to turn"],
+        blankAnswer: "turned",
+        acceptBlanks: ["turned"],
+        hint: "turn（つける）の過去分詞形を入れる",
+        orderChunks: ["She went to bed", "with", "the TV", "turned", "on."],
+        fullEn: "She went to bed with the TV turned on.",
+        altFullEn: [],
+        explanation: "with + O + 過去分詞（Oが〜された状態で）。テレビは「つけられた」状態なので turned。"
+      },
+      {
+        id: "q55", unit: 7, factId: "7-E", isAdded: true,
+        blankSentence: "(          ) by the sudden news, everyone went silent.",
+        ja: "その突然のニュースに驚いて、みんな黙り込んだ。",
+        choices: ["Surprised", "Surprising", "Surprise", "To surprise"],
+        blankAnswer: "Surprised",
+        acceptBlanks: ["Surprised", "surprised"],
+        hint: "surprise（驚かせる）を人の感情を表す過去分詞に変える",
+        orderChunks: ["Surprised", "by the sudden news,", "everyone", "went", "silent."],
+        fullEn: "Surprised by the sudden news, everyone went silent.",
+        altFullEn: [],
+        explanation: "主語 everyone が驚かされた受動の分詞構文なので Surprised から始めます。"
+      },
+      {
+        id: "q56", unit: 7, factId: "7-E", isAdded: true,
+        blankSentence: "(          ) from his accent, he must be from Australia.",
+        ja: "彼のなまりから判断すると、彼はオーストラリア出身に違いない。",
+        choices: ["Judging", "Judged", "Judge", "To judge"],
+        blankAnswer: "Judging",
+        acceptBlanks: ["Judging", "judging"],
+        hint: "judge（判断する）を慣用分詞構文にする",
+        orderChunks: ["Judging from", "his accent,", "he must be", "from", "Australia."],
+        fullEn: "Judging from his accent, he must be from Australia.",
+        altFullEn: [],
+        explanation: "Judging from ...（〜から判断すると）という慣用表現です。"
+      },
+      {
+        id: "q57", unit: 8, factId: "8-A", isAdded: true,
+        blankSentence: "Does Emily have as (          ) books as you do?",
+        ja: "エミリーはあなたと同じくらいの数の本を持っていますか？",
+        choices: ["many", "much", "more", "most"],
+        blankAnswer: "many",
+        acceptBlanks: ["many"],
+        hint: "books（可算名詞複数）につく「たくさんの」の原級",
+        orderChunks: ["Does Emily", "have", "as many books", "as", "you do?"],
+        fullEn: "Does Emily have as many books as you do?",
+        altFullEn: ["Does Emily have as many books as you?"],
+        explanation: "books は数えられる複数名詞なので as many ... as を使います。"
+      },
+      {
+        id: "q58", unit: 8, factId: "8-D", isAdded: true,
+        blankSentence: "The weather is getting (          ) and colder every day.",
+        ja: "天気は日に日にますます寒くなっている。",
+        choices: ["colder", "cold", "coldest", "more cold"],
+        blankAnswer: "colder",
+        acceptBlanks: ["colder"],
+        hint: "cold（寒い）の比較級",
+        orderChunks: ["The weather", "is getting", "colder and colder", "every", "day."],
+        fullEn: "The weather is getting colder and colder every day.",
+        altFullEn: [],
+        explanation: "比較級 + and + 比較級 で「ますます〜になる」（getting better and better の応用）。"
+      },
+      {
+        id: "q59", unit: 8, factId: "8-D", isAdded: true,
+        blankSentence: "This smartphone is (          ) expensive than that model.",
+        ja: "このスマートフォンはあのモデルほど高価ではない。",
+        choices: ["less", "fewer", "little", "least"],
+        blankAnswer: "less",
+        acceptBlanks: ["less"],
+        hint: "「より～でない」を表す劣等比較の1語",
+        orderChunks: ["This smartphone", "is", "less expensive", "than", "that model."],
+        fullEn: "This smartphone is less expensive than that model.",
+        altFullEn: [],
+        explanation: "less + 原級 + than ...（〜ほど…ではない／〜より…でない）。expensive のような長い形容詞にも less を使えます。"
+      },
+      {
+        id: "q60", unit: 8, factId: "8-D", isAdded: true,
+        blankSentence: "This is by (          ) the most interesting movie I've seen this year.",
+        ja: "これは今年私が見た中で断トツで一番おもしろい映画だ。",
+        choices: ["far", "near", "much", "very"],
+        blankAnswer: "far",
+        acceptBlanks: ["far"],
+        hint: "by (   ) + 最上級 で「断然一番～」",
+        orderChunks: ["This is", "by far", "the most interesting movie", "I've seen", "this year."],
+        fullEn: "This is by far the most interesting movie I've seen this year.",
+        altFullEn: ["This is by far the most interesting movie I have seen this year."],
+        explanation: "by far + 最上級 で「断然一番〜」（This is by far the best restaurant... の応用）。"
+      },
+      {
+        id: "q61", unit: 8, factId: "8-D", isAdded: true,
+        blankSentence: "Kyoto is one of the most popular tourist (          ) in Japan.",
+        ja: "京都は日本で最も人気のある観光都市の1つだ。",
+        choices: ["cities", "city", "citys", "a city"],
+        blankAnswer: "cities",
+        acceptBlanks: ["cities"],
+        hint: "city（都市）の複数形",
+        orderChunks: ["Kyoto is", "one of", "the most popular", "tourist cities", "in Japan."],
+        fullEn: "Kyoto is one of the most popular tourist cities in Japan.",
+        altFullEn: [],
+        explanation: "one of the + 最上級 + 複数名詞（最も〜な…の一つ）なので、必ず複数形の cities にします。"
+      },
+      {
+        id: "q62", unit: 7, factId: "7-A", isAdded: true,
+        blankSentence: "The boy (          ) the guitar in the park is my brother.",
+        ja: "公園でギターを弾いている少年は私の兄です。",
+        choices: ["playing", "played", "plays", "to play"],
+        blankAnswer: "playing",
+        acceptBlanks: ["playing"],
+        hint: "play（弾く）を現在分詞に変える",
+        orderChunks: ["The boy", "playing the guitar", "in the park", "is", "my brother."],
+        fullEn: "The boy playing the guitar in the park is my brother.",
+        altFullEn: [],
+        explanation: "The boy playing the guitar in the park が主語（S）になり、is（V）、my brother（C）と続きます。"
+      },
+      {
+        id: "q63", unit: 7, factId: "7-C", isAdded: true,
+        blankSentence: "I had my bicycle (          ).",
+        ja: "私は自転車を修理してもらいました。",
+        choices: ["fixed", "fixing", "fix", "to fix"],
+        blankAnswer: "fixed",
+        acceptBlanks: ["fixed"],
+        hint: "fix（修理する）の過去分詞形を入れる",
+        orderChunks: ["I", "had", "my bicycle", "fixed."],
+        fullEn: "I had my bicycle fixed.",
+        altFullEn: ["I got my bicycle fixed."],
+        explanation: "have + O（my bicycle）+ 過去分詞（fixed）で「Oを〜してもらう」を表します。"
+      },
+      {
+        id: "q64", unit: 7, factId: "7-D", isAdded: true,
+        blankSentence: "She was busy (          ) her homework.",
+        ja: "彼女は宿題をするのに忙しかった。",
+        choices: ["doing", "done", "do", "to do"],
+        blankAnswer: "doing",
+        acceptBlanks: ["doing"],
+        hint: "do（する）を動名詞・分詞形に変える",
+        orderChunks: ["She", "was busy", "doing", "her", "homework."],
+        fullEn: "She was busy doing her homework.",
+        altFullEn: [],
+        explanation: "be busy doing ...（〜するのに忙しい）のパターンです。"
+      },
+      {
+        id: "q65", unit: 7, factId: "7-E", isAdded: true,
+        blankSentence: "(          ) been to Tokyo many times, he knows the city well.",
+        ja: "東京に何度も行ったことがあるので、彼はその街をよく知っている。",
+        choices: ["Having", "Have", "Had", "Being"],
+        blankAnswer: "Having",
+        acceptBlanks: ["Having", "having"],
+        hint: "完了形分詞構文「Having + 過去分詞」の最初の1語",
+        orderChunks: ["Having been to Tokyo", "many times,", "he knows", "the city", "well."],
+        fullEn: "Having been to Tokyo many times, he knows the city well.",
+        altFullEn: [],
+        explanation: "完了形の分詞構文 Having been to ... を文頭に置き、主節を続けます。"
+      },
+      {
+        id: "q66", unit: 7, factId: "7-E", isAdded: true,
+        blankSentence: "He walked into the room (          ) the window open.",
+        ja: "窓を開けたまま、彼はその部屋に入った。",
+        choices: ["with", "by", "in", "for"],
+        blankAnswer: "with",
+        acceptBlanks: ["with"],
+        hint: "付帯状況「Oを〜の状態にしたまま」を表す前置詞",
+        orderChunks: ["He walked", "into the room", "with", "the window", "open."],
+        fullEn: "He walked into the room with the window open.",
+        altFullEn: [],
+        explanation: "with + O（the window）+ 形容詞（open）で付帯状況を表します。"
+      },
+      {
+        id: "q67", unit: 8, factId: "8-A", isAdded: true,
+        blankSentence: "Ken has as (          ) comic books as I do.",
+        ja: "健は私と同じくらいの数の漫画を持っている。",
+        choices: ["many", "much", "more", "most"],
+        blankAnswer: "many",
+        acceptBlanks: ["many"],
+        hint: "comic books（複数名詞）につく原級",
+        orderChunks: ["Ken has", "as many", "comic books", "as", "I do."],
+        fullEn: "Ken has as many comic books as I do.",
+        altFullEn: ["Ken has as many comic books as I."],
+        explanation: "as many + 複数名詞 + as の形。文末の do は have の代動詞です。"
+      },
+      {
+        id: "q68", unit: 8, factId: "8-C", isAdded: true,
+        blankSentence: "Who plays the piano (          ) in your family?",
+        ja: "あなたの家族の中で、誰が一番上手にピアノを弾きますか？",
+        choices: ["best", "better", "well", "good"],
+        blankAnswer: "best",
+        acceptBlanks: ["best", "the best"],
+        hint: "well（上手に）の最上級",
+        orderChunks: ["Who", "plays the piano", "best", "in", "your family?"],
+        fullEn: "Who plays the piano best in your family?",
+        altFullEn: ["Who plays the piano the best in your family?"],
+        explanation: "疑問詞 Who が主語になり、副詞の最上級 best、範囲を表す in your family の順に並べます。"
+      },
+      {
+        id: "q69", unit: 8, factId: "8-C", isAdded: true,
+        blankSentence: "That river is the longest (          ) the three.",
+        ja: "その川は、その3つの中で一番長い。",
+        choices: ["of", "in", "than", "from"],
+        blankAnswer: "of",
+        acceptBlanks: ["of"],
+        hint: "the three（数字・複数）の前につく前置詞",
+        orderChunks: ["That river", "is", "the longest", "of", "the three."],
+        fullEn: "That river is the longest of the three.",
+        altFullEn: [],
+        explanation: "3つ以上の比較で数字・複数名詞が続くときは of the three を用います。"
+      },
+      {
+        id: "q70", unit: 8, factId: "8-D", isAdded: true,
+        blankSentence: "The older we get, the (          ) we learn.",
+        ja: "年をとればとるほど、私たちはより多くのことを学ぶ。",
+        choices: ["more", "much", "most", "many"],
+        blankAnswer: "more",
+        acceptBlanks: ["more"],
+        hint: "「より多くのこと」を表す much の比較級",
+        orderChunks: ["The older", "we get,", "the more", "we", "learn."],
+        fullEn: "The older we get, the more we learn.",
+        altFullEn: [],
+        explanation: "The + 比較級 + S + V, the + 比較級 + S + V の構文です。"
+      },
+      {
+        id: "q71", unit: 8, factId: "8-A", isAdded: true,
+        blankSentence: "This book is not (          ) useful as that one.",
+        ja: "この本はあの本ほど役に立たない。",
+        choices: ["as", "more", "than", "such"],
+        blankAnswer: "as",
+        acceptBlanks: ["as", "so"],
+        hint: "not (   ) + 原級 + as で「〜ほど…ではない」",
+        orderChunks: ["This book", "is not", "as useful", "as", "that one."],
+        fullEn: "This book is not as useful as that one.",
+        altFullEn: ["This book isn't as useful as that one.", "This book is not so useful as that one."],
+        explanation: "not as + 原級 + as で「〜ほど…ではない」を表します。"
+      },
+      {
+        id: "q72", unit: 7, factId: "7-C", isAdded: true,
+        blankSentence: "I heard my friend (          ).",
+        ja: "私は友人が歌っているのを聞いた。",
+        choices: ["singing", "sang", "to sing", "sings"],
+        blankAnswer: "singing",
+        acceptBlanks: ["singing", "sing"],
+        hint: "sing（歌う）を現在分詞に変える",
+        orderChunks: ["I", "heard", "my friend", "singing."],
+        fullEn: "I heard my friend singing.",
+        altFullEn: ["I heard my friend sing."],
+        explanation: "知覚動詞 hear + O + 〜ing（Oが〜しているのを聞く）の SVOC 構文です。"
+      },
+      {
+        id: "q73", unit: 7, factId: "7-E", isAdded: true,
+        blankSentence: "She left the station, smiling and (          ).",
+        ja: "彼女は笑顔で手を振りながら駅を去った。",
+        choices: ["waving", "waved", "wave", "to wave"],
+        blankAnswer: "waving",
+        acceptBlanks: ["waving"],
+        hint: "wave（手を振る）を現在分詞に変える",
+        orderChunks: ["She left", "the station,", "smiling", "and", "waving."],
+        fullEn: "She left the station, smiling and waving.",
+        altFullEn: [],
+        explanation: "付帯状況を表す分詞構文をコンマ以下につけ、smiling と並列で waving にします。"
+      },
+      {
+        id: "q74", unit: 8, factId: "8-A", isAdded: true,
+        blankSentence: "Our new library is (          ) as large as the old one.",
+        ja: "私たちの新しい図書館は、古いものの2倍の大きさだ。",
+        choices: ["twice", "two", "second", "double"],
+        blankAnswer: "twice",
+        acceptBlanks: ["twice"],
+        hint: "「2倍」を表す1語",
+        orderChunks: ["Our new library is", "twice", "as large", "as", "the old one."],
+        fullEn: "Our new library is twice as large as the old one.",
+        altFullEn: [],
+        explanation: "twice as large as ...（〜の2倍の大きさ）の語順です。"
+      },
+      {
+        id: "q75", unit: 8, factId: "8-B", isAdded: true,
+        blankSentence: "This bag is (          ) lighter than that bag.",
+        ja: "このカバンはあのカバンよりずっと軽い。",
+        choices: ["much", "very", "so", "too"],
+        blankAnswer: "much",
+        acceptBlanks: ["much", "far", "even"],
+        hint: "比較級 lighter の前に置いて強調する語",
+        orderChunks: ["This bag", "is", "much lighter", "than", "that bag."],
+        fullEn: "This bag is much lighter than that bag.",
+        altFullEn: ["This bag is much lighter than that one."],
+        explanation: "比較級 lighter の前に much を置いて「ずっと」と強調します。"
+      },
+      {
+        id: "q76", unit: 8, factId: "8-C", isAdded: true,
+        blankSentence: "He is the tallest (          ) his class.",
+        ja: "彼はクラスの中で一番背が高い。",
+        choices: ["in", "of", "at", "for"],
+        blankAnswer: "in",
+        acceptBlanks: ["in"],
+        hint: "集団・場所を表す単数名詞（his class）の前につく前置詞",
+        orderChunks: ["He", "is", "the tallest", "in", "his class."],
+        fullEn: "He is the tallest in his class.",
+        altFullEn: [],
+        explanation: "集団・場所の範囲を表すときは in + 単数名詞 を使います。"
+      }
+    ];
+
+    // =========================================================================
+    // 4. アプリケーション状態管理（LocalStorage永続化 ＋ 保存/読込機能）
+    // =========================================================================
+    const STORAGE_KEY = "factbook_i_u7_u8_prep_v2";
+
+    let appState = {
+      learnedVocabIds: [],       // 暗記済み重要表現のID配列
+      weakQuestionIds: [],       // 間違えた・要復習の問題ID配列
+      masteredQuestionIds: [],   // 正解済み問題ID配列
+      factStats: {},             // { "7-A": { correct: 0, wrong: 0 }, ... }
+      totalAttempts: 0,
+      totalCorrect: 0,
+      preferredQuizFormat: "choice" // 'choice' | 'fill' | 'order' | 'translate' | 'mixed'
+    };
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem("factbook_i_u7_u8_prep_v1");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          appState = { ...appState, ...parsed };
+        }
+      } catch (e) {
+        console.error("Failed to load state:", e);
+      }
+      GRAMMAR_FACTS.forEach(f => {
+        if (!appState.factStats[f.factId]) {
+          appState.factStats[f.factId] = { correct: 0, wrong: 0 };
+        }
+      });
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      } catch (e) {
+        console.error("Failed to save state:", e);
+      }
+      updateGlobalStatsUI();
+    }
+
+    // --- データ保存・読み込みモーダル制御 ---
+    function openDataModal() {
+      document.getElementById("modal-reset-confirm-box").classList.add("hidden");
+      // 最新の引き継ぎコードを生成してセット
+      const payload = {
+        app: "FACTBOOK_I_U7_U8",
+        exportedAt: new Date().toISOString(),
+        data: appState
+      };
+      const jsonStr = JSON.stringify(payload);
+      // UTF-8対応Base64エンコード
+      const encoded = btoa(unescape(encodeURIComponent(jsonStr)));
+      document.getElementById("save-code-box").value = encoded;
+      document.getElementById("load-code-input").value = "";
+      document.getElementById("data-modal").classList.remove("hidden");
+    }
+
+    function closeDataModal() {
+      document.getElementById("data-modal").classList.add("hidden");
+    }
+
+    function toggleResetConfirmInModal() {
+      document.getElementById("modal-reset-confirm-box").classList.toggle("hidden");
+    }
+
+    function exportDataToFile() {
+      const payload = {
+        app: "FACTBOOK_I_U7_U8",
+        exportedAt: new Date().toISOString(),
+        data: appState
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const dateStr = new Date().toISOString().slice(0, 10);
+      a.href = url;
+      a.download = `factbook_u7_u8_backup_${dateStr}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("バックアップファイル(.json)を保存しました！", "success");
+    }
+
+    function importDataFromFile(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          applyImportedData(parsed);
+        } catch (err) {
+          showToast("ファイルの形式が正しくありません", "error");
+        }
+        event.target.value = "";
+      };
+      reader.readAsText(file);
+    }
+
+    function copySaveCode() {
+      const box = document.getElementById("save-code-box");
+      box.select();
+      box.setSelectionRange(0, 99999);
+      try {
+        document.execCommand("copy");
+        showToast("引き継ぎコードをクリップボードにコピーしました！", "success");
+      } catch (e) {
+        showToast("コピーに失敗しました。手動で選択してコピーしてください", "error");
+      }
+    }
+
+    function importDataFromCode() {
+      const raw = document.getElementById("load-code-input").value.trim();
+      if (!raw) {
+        showToast("引き継ぎコードを入力してください", "info");
+        return;
+      }
+      try {
+        const jsonStr = decodeURIComponent(escape(atob(raw)));
+        const parsed = JSON.parse(jsonStr);
+        applyImportedData(parsed);
+      } catch (e) {
+        showToast("コードが無効または破損しています", "error");
+      }
+    }
+
+    function applyImportedData(parsed) {
+      const incoming = parsed.data ? parsed.data : parsed;
+      if (!incoming || !Array.isArray(incoming.learnedVocabIds) || !Array.isArray(incoming.weakQuestionIds)) {
+        showToast("有効な学習データではありません", "error");
+        return;
+      }
+      appState = {
+        ...appState,
+        ...incoming
+      };
+      GRAMMAR_FACTS.forEach(f => {
+        if (!appState.factStats[f.factId]) {
+          appState.factStats[f.factId] = { correct: 0, wrong: 0 };
+        }
+      });
+      saveState();
+      selectQuizFormat(appState.preferredQuizFormat || "choice", true);
+      renderDashboard();
+      renderVocabView();
+      closeDataModal();
+      showToast("学習データを正常に読み込み・復元しました！", "success");
+    }
+
+    function executeResetData() {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem("factbook_i_u7_u8_prep_v1");
+      appState = {
+        learnedVocabIds: [],
+        weakQuestionIds: [],
+        masteredQuestionIds: [],
+        factStats: {},
+        totalAttempts: 0,
+        totalCorrect: 0,
+        preferredQuizFormat: "choice"
+      };
+      loadState();
+      saveState();
+      selectQuizFormat("choice", true);
+      closeDataModal();
+      renderDashboard();
+      renderVocabView();
+      showToast("学習データを初期化しました", "info");
+    }
+
+    // =========================================================================
+    // 5. 音声読み上げユーティリティ（Web Speech API）
+    // =========================================================================
+    function speakEnglish(text) {
+      if (!('speechSynthesis' in window)) {
+        showToast("お使いのブラウザは音声読み上げに対応していません", "error");
+        return;
+      }
+      window.speechSynthesis.cancel();
+      // 読み上げ用に記号（~ や (that)）を自然な英語に整形
+      const cleanText = text
+        .replace(/~/g, "something")
+        .replace(/\(that\)/g, "that")
+        .replace(/one's/g, "one's");
+      const utter = new SpeechSynthesisUtterance(cleanText);
+      utter.lang = "en-US";
+      utter.rate = 0.95;
+      window.speechSynthesis.speak(utter);
+    }
+
+    // =========================================================================
+    // 6. トースト通知
+    // =========================================================================
+    function showToast(message, type = "info") {
+      const container = document.getElementById("toast-container");
+      const toast = document.createElement("div");
+      const colors = {
+        success: "bg-emerald-600 text-white",
+        error: "bg-rose-600 text-white",
+        info: "bg-slate-800 text-white"
+      };
+      toast.className = `${colors[type] || colors.info} px-4 py-2.5 rounded-xl shadow-lg text-xs font-bold flex items-center gap-2 transition-all duration-300 transform translate-y-2 opacity-0`;
+      toast.innerHTML = `<span>${message}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.remove("translate-y-2", "opacity-0");
+      });
+      setTimeout(() => {
+        toast.classList.add("opacity-0", "translate-y-2");
+        setTimeout(() => toast.remove(), 300);
+      }, 2400);
+    }
+
+    // =========================================================================
+    // 7. ナビゲーション＆トップステータスバー更新
+    // =========================================================================
+    let currentTab = "dashboard";
+
+    function switchTab(tabName) {
+      currentTab = tabName;
+      const views = ["dashboard", "vocab", "grammar-guide", "quiz"];
+      views.forEach(v => {
+        const el = document.getElementById(`view-${v}`);
+        const btn = document.getElementById(`tab-${v}`);
+        const mbtn = document.getElementById(`mtab-${v}`);
+        if (v === tabName) {
+          el.classList.remove("hidden");
+          if (btn) btn.className = "nav-tab flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all bg-brand-600 text-white shadow-sm";
+          if (mbtn) mbtn.className = "mnav-tab flex flex-col items-center justify-center py-1.5 px-1 rounded-xl text-[10px] font-extrabold transition bg-brand-50 text-brand-700";
+        } else {
+          el.classList.add("hidden");
+          if (btn) btn.className = "nav-tab flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all bg-slate-100 text-slate-600 hover:bg-slate-200";
+          if (mbtn) mbtn.className = "mnav-tab flex flex-col items-center justify-center py-1.5 px-1 rounded-xl text-[10px] font-bold transition text-slate-500 hover:bg-slate-100";
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      if (tabName === "dashboard") renderDashboard();
+      if (tabName === "vocab") renderVocabView();
+      if (tabName === "grammar-guide") renderGrammarGuide();
+      if (tabName === "quiz") {
+        document.getElementById("launcher-weak-count").textContent = appState.weakQuestionIds.length;
+      }
+    }
+
+    function updateGlobalStatsUI() {
+      const learnedCount = appState.learnedVocabIds.length;
+      document.getElementById("stat-vocab-count").textContent = learnedCount;
+
+      const acc = appState.totalAttempts > 0
+        ? Math.round((appState.totalCorrect / appState.totalAttempts) * 100)
+        : "--";
+      document.getElementById("stat-grammar-acc").textContent = acc;
+
+      const weakCount = appState.weakQuestionIds.length;
+      document.getElementById("stat-weak-count").textContent = weakCount;
+      const launcherWeak = document.getElementById("launcher-weak-count");
+      if (launcherWeak) launcherWeak.textContent = weakCount;
+    }
+
+    // =========================================================================
+    // 8. VIEW 1: ダッシュボード描画（全体進捗・ヒートマップ・重点復習ナビ）
+    // =========================================================================
+    function renderDashboard() {
+      const totalVocab = VOCAB_DATA.length;
+      const learnedCount = appState.learnedVocabIds.length;
+      const vocabPct = Math.round((learnedCount / totalVocab) * 100);
+
+      document.getElementById("dash-vocab-percent").textContent = `${vocabPct}%`;
+      document.getElementById("dash-vocab-detail").textContent = `${learnedCount} / ${totalVocab} 語`;
+      document.getElementById("dash-vocab-bar").style.width = `${vocabPct}%`;
+      document.getElementById("dash-unlearned-vocab").textContent = `${totalVocab - learnedCount}語`;
+
+      const u7Total = VOCAB_DATA.filter(v => v.unit === 7).length;
+      const u8Total = VOCAB_DATA.filter(v => v.unit === 8).length;
+      const u7Learned = VOCAB_DATA.filter(v => v.unit === 7 && appState.learnedVocabIds.includes(v.id)).length;
+      const u8Learned = VOCAB_DATA.filter(v => v.unit === 8 && appState.learnedVocabIds.includes(v.id)).length;
+      document.getElementById("dash-u7-vocab").textContent = `${u7Learned}/${u7Total}`;
+      document.getElementById("dash-u8-vocab").textContent = `${u8Learned}/${u8Total}`;
+
+      const totalQ = QUIZ_QUESTIONS.length;
+      const masteredCount = appState.masteredQuestionIds.length;
+      const gramPct = Math.round((masteredCount / totalQ) * 100);
+      document.getElementById("dash-grammar-percent").textContent = `${gramPct}%`;
+      document.getElementById("dash-grammar-detail").textContent = `${masteredCount} / ${totalQ} 問`;
+      document.getElementById("dash-grammar-bar").style.width = `${gramPct}%`;
+      document.getElementById("dash-total-attempts").textContent = `${appState.totalAttempts}回`;
+
+      const weakCount = appState.weakQuestionIds.length;
+      document.getElementById("dash-weak-num").textContent = weakCount;
+
+      renderFactHeatmap(7, "heatmap-unit7");
+      renderFactHeatmap(8, "heatmap-unit8");
+      updateWeaknessAlertBanner();
+    }
+
+    function renderFactHeatmap(unitNum, containerId) {
+      const container = document.getElementById(containerId);
+      const facts = GRAMMAR_FACTS.filter(f => f.unit === unitNum);
+
+      container.innerHTML = facts.map(f => {
+        const st = appState.factStats[f.factId] || { correct: 0, wrong: 0 };
+        const attempts = st.correct + st.wrong;
+        const rate = attempts > 0 ? Math.round((st.correct / attempts) * 100) : null;
+        const factWeakCount = QUIZ_QUESTIONS.filter(q => q.factId === f.factId && appState.weakQuestionIds.includes(q.id)).length;
+
+        let barColor = "bg-slate-300";
+        let rateLabel = "未演習";
+        if (rate !== null) {
+          if (rate >= 80) {
+            barColor = "bg-emerald-500";
+            rateLabel = `${rate}%`;
+          } else if (rate >= 50) {
+            barColor = "bg-amber-500";
+            rateLabel = `${rate}%`;
+          } else {
+            barColor = "bg-rose-500";
+            rateLabel = `${rate}%`;
+          }
+        }
+
+        return `
+          <div class="p-3 rounded-xl bg-slate-50/90 border border-slate-200/70 hover:border-slate-300 transition">
+            <div class="flex items-center justify-between gap-2 mb-1.5">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="text-xs font-extrabold px-2 py-0.5 rounded bg-white border border-slate-200 text-slate-800 shrink-0">${f.code}</span>
+                <span class="text-xs sm:text-sm font-bold text-slate-800 truncate">${f.title}</span>
+              </div>
+              <div class="flex items-center gap-2 shrink-0">
+                ${factWeakCount > 0 ? `<span class="text-[11px] font-extrabold text-rose-600 bg-rose-100 px-1.5 py-0.5 rounded">苦手${factWeakCount}</span>` : ''}
+                <span class="text-xs font-extrabold text-slate-700">${rateLabel}</span>
+              </div>
+            </div>
+            <div class="w-full bg-slate-200/80 h-2 rounded-full overflow-hidden mb-2">
+              <div class="${barColor} h-full rounded-full transition-all duration-500" style="width: ${rate !== null ? rate : 0}%"></div>
+            </div>
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="text-slate-400">正解 ${st.correct} / 不正解 ${st.wrong}</span>
+              <button onclick="startFactQuiz('${f.factId}')" class="font-bold text-brand-600 hover:underline">
+                この項目を演習 →
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function updateWeaknessAlertBanner() {
+      const weakQIds = appState.weakQuestionIds;
+      const titleEl = document.getElementById("alert-title");
+      const descEl = document.getElementById("alert-desc");
+      const btnEl = document.getElementById("alert-action-btn");
+
+      if (weakQIds.length > 0) {
+        const countsByFact = {};
+        weakQIds.forEach(qId => {
+          const q = QUIZ_QUESTIONS.find(item => item.id === qId);
+          if (q) countsByFact[q.factId] = (countsByFact[q.factId] || 0) + 1;
+        });
+        const topFactId = Object.keys(countsByFact).sort((a, b) => countsByFact[b] - countsByFact[a])[0];
+        const topFact = GRAMMAR_FACTS.find(f => f.factId === topFactId);
+
+        titleEl.textContent = `現在 ${weakQIds.length} 問の苦手問題が復習待ちです！${topFact ? `（特に Unit ${topFact.unit} ${topFact.code} に注意）` : ''}`;
+        descEl.textContent = topFact
+          ? `「${topFact.title}」のルールを確認してから、間違えた問題だけの集中特訓を行うと効率よく点数が伸びます。`
+          : "間違えた問題だけを抽出した特訓モードで、弱点を一気に潰しましょう。";
+        btnEl.innerHTML = `<i class="fa-solid fa-fire"></i><span>苦手 ${weakQIds.length} 問を集中特訓</span>`;
+        btnEl.onclick = () => startWeaknessDrill();
+      } else if (appState.totalAttempts > 0) {
+        titleEl.textContent = "素晴らしい！現在、間違えたまま放置されている問題はありません。";
+        descEl.textContent = "全76問のコンプリート演習や、重要表現の赤シート暗記でテスト本番のスピードを高めましょう。";
+        btnEl.innerHTML = `<i class="fa-solid fa-rotate-right"></i><span>全範囲ランダム演習へ</span>`;
+        btnEl.onclick = () => { switchTab("quiz"); startQuizSession({ mode: "random10" }); };
+      } else {
+        titleEl.textContent = "まずは演習テストまたは重要表現のチェックを始めよう！";
+        descEl.textContent = "間違えた問題や未暗記の表現がここに自動集計され、ワンタップで弱点特訓ができます。";
+        btnEl.innerHTML = `<i class="fa-solid fa-play"></i><span>演習テストを開始</span>`;
+        btnEl.onclick = () => switchTab("quiz");
+      }
+    }
+
+    // =========================================================================
+    // 9. VIEW 2: 重要表現 暗記システム（赤シート・フラッシュカード・4択）
+    // =========================================================================
+    let vocabSubMode = "list";
+    let sheetMaskMode = "none";
+    let fcDeck = [];
+    let fcIndex = 0;
+    let fcFlipped = false;
+    let vqItems = [];
+    let vqIndex = 0;
+    let vqScore = 0;
+
+    function setVocabMode(mode) {
+      vocabSubMode = mode;
+      ["list", "card", "quiz"].forEach(m => {
+        const btn = document.getElementById(`vmode-${m}`);
+        if (m === mode) {
+          btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-brand-700 shadow-2xs transition";
+        } else {
+          btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition";
+        }
+      });
+
+      document.getElementById("vocab-list-container").classList.toggle("hidden", mode !== "list");
+      document.getElementById("vocab-card-container").classList.toggle("hidden", mode !== "card");
+      document.getElementById("vocab-quiz-container").classList.toggle("hidden", mode !== "quiz");
+      document.getElementById("red-sheet-controls").classList.toggle("hidden", mode !== "list");
+
+      renderVocabView();
+    }
+
+    function toggleSheetMode(mode) {
+      sheetMaskMode = mode;
+      ["none", "ja", "en"].forEach(m => {
+        const btn = document.getElementById(`sheet-btn-${m}`);
+        if (!btn) return;
+        if (m === mode) {
+          btn.classList.add("ring-2", "ring-brand-500");
+        } else {
+          btn.classList.remove("ring-2", "ring-brand-500");
+        }
+      });
+      renderVocabList();
+    }
+
+    function getFilteredVocab() {
+      const unitVal = document.getElementById("vocab-unit-filter").value;
+      const statusVal = document.getElementById("vocab-status-filter").value;
+
+      return VOCAB_DATA.filter(item => {
+        if (unitVal !== "all" && item.unit !== Number(unitVal)) return false;
+        const isLearned = appState.learnedVocabIds.includes(item.id);
+        if (statusVal === "learned" && !isLearned) return false;
+        if (statusVal === "unlearned" && isLearned) return false;
+        return true;
+      });
+    }
+
+    function renderVocabView() {
+      if (vocabSubMode === "list") {
+        renderVocabList();
+      } else if (vocabSubMode === "card") {
+        initFlashcards();
+      } else if (vocabSubMode === "quiz") {
+        initVocabSpeedQuiz();
+      }
+    }
+
+    function renderVocabList() {
+      const list = getFilteredVocab();
+      const tbody = document.getElementById("vocab-table-body");
+      const emptyMsg = document.getElementById("vocab-empty-msg");
+
+      if (list.length === 0) {
+        tbody.innerHTML = "";
+        emptyMsg.classList.remove("hidden");
+        return;
+      }
+      emptyMsg.classList.add("hidden");
+
+      tbody.innerHTML = list.map(item => {
+        const isLearned = appState.learnedVocabIds.includes(item.id);
+        const enMaskClass = sheetMaskMode === "en" ? "dark-sheet-masked px-2 py-1.5 inline-block min-w-[72px]" : "";
+        const jaMaskClass = sheetMaskMode === "ja" ? "red-sheet-masked px-2 py-1.5 inline-block min-w-[72px]" : "";
+
+        return `
+          <tr class="hover:bg-slate-50/80 transition ${isLearned ? 'bg-emerald-50/20' : ''}">
+            <td class="py-2.5 px-2 sm:px-4 text-center">
+              <button onclick="toggleVocabLearned(${item.id})" class="w-8 h-8 sm:w-7 sm:h-7 rounded-lg border flex items-center justify-center mx-auto transition active:scale-95 ${isLearned ? 'bg-emerald-500 border-emerald-500 text-white shadow-2xs' : 'bg-white border-slate-300 text-transparent hover:border-emerald-400'}" title="覚えた切替">
+                <i class="fa-solid fa-check text-xs"></i>
+              </button>
+            </td>
+            <td class="py-2.5 px-1.5 sm:px-2">
+              <span class="px-1.5 sm:px-2 py-0.5 rounded text-[10px] sm:text-[11px] font-extrabold ${item.unit === 7 ? 'bg-unit7-light text-unit7' : 'bg-unit8-light text-unit8'}">U${item.unit}</span>
+            </td>
+            <td class="py-2.5 px-2.5 sm:px-3 font-bold text-slate-900 break-words">
+              <span class="${enMaskClass}" onclick="${sheetMaskMode === 'en' ? 'this.classList.toggle(\'revealed\')' : ''}">${item.en}</span>
+              ${item.note ? `<div class="text-[10px] text-amber-600 font-normal mt-0.5">${item.note}</div>` : ''}
+            </td>
+            <td class="py-2.5 px-2.5 sm:px-3 font-semibold text-slate-700 break-words">
+              <span class="${jaMaskClass}" onclick="${sheetMaskMode === 'ja' ? 'this.classList.toggle(\'revealed\')' : ''}">${item.ja}</span>
+            </td>
+            <td class="py-2.5 px-2 sm:px-3 text-center">
+              <button onclick="speakEnglish('${item.en.replace(/'/g, "\\'")}')" class="w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-slate-100 hover:bg-brand-100 active:scale-95 text-slate-600 hover:text-brand-700 transition" title="発音を聞く">
+                <i class="fa-solid fa-volume-high text-xs"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function toggleVocabLearned(id) {
+      const idx = appState.learnedVocabIds.indexOf(id);
+      if (idx === -1) {
+        appState.learnedVocabIds.push(id);
+      } else {
+        appState.learnedVocabIds.splice(idx, 1);
+      }
+      saveState();
+      renderVocabView();
+    }
+
+    function initFlashcards() {
+      const filtered = getFilteredVocab();
+      fcDeck = filtered.length > 0 ? [...filtered] : [...VOCAB_DATA];
+      fcIndex = 0;
+      fcFlipped = false;
+      updateFlashcardUI();
+    }
+
+    function shuffleFlashcards() {
+      fcDeck = [...fcDeck].sort(() => Math.random() - 0.5);
+      fcIndex = 0;
+      fcFlipped = false;
+      updateFlashcardUI();
+      showToast("カードをシャッフルしました", "info");
+    }
+
+    function flipFlashcard() {
+      fcFlipped = !fcFlipped;
+      const inner = document.getElementById("fc-inner");
+      if (fcFlipped) {
+        inner.classList.add("rotate-y-180");
+      } else {
+        inner.classList.remove("rotate-y-180");
+      }
+    }
+
+    function updateFlashcardUI() {
+      if (fcDeck.length === 0) return;
+      const card = fcDeck[fcIndex];
+      const isLearned = appState.learnedVocabIds.includes(card.id);
+
+      fcFlipped = false;
+      document.getElementById("fc-inner").classList.remove("rotate-y-180");
+      document.getElementById("fc-progress-text").textContent = `${fcIndex + 1} / ${fcDeck.length}`;
+      document.getElementById("fc-en-text").textContent = card.en;
+      document.getElementById("fc-en-sub").textContent = card.en;
+      document.getElementById("fc-ja-text").textContent = card.ja;
+
+      const uBadge = document.getElementById("fc-unit-badge");
+      const uBadgeBack = document.getElementById("fc-unit-badge-back");
+      uBadge.textContent = `Unit ${card.unit}`;
+      uBadge.className = `px-2.5 py-1 rounded-lg text-xs font-extrabold ${card.unit === 7 ? 'bg-unit7-light text-unit7' : 'bg-unit8-light text-unit8'}`;
+      uBadgeBack.textContent = `Unit ${card.unit}`;
+
+      const stBadge = document.getElementById("fc-status-badge");
+      if (isLearned) {
+        stBadge.textContent = "✓ 暗記済み";
+        stBadge.className = "text-xs font-extrabold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded";
+      } else {
+        stBadge.textContent = "未暗記";
+        stBadge.className = "text-xs font-bold text-rose-500 bg-rose-50 px-2 py-0.5 rounded";
+      }
+    }
+
+    function speakCurrentCard() {
+      if (fcDeck[fcIndex]) speakEnglish(fcDeck[fcIndex].en);
+    }
+
+    function markFlashcard(learned) {
+      if (fcDeck.length === 0) return;
+      const card = fcDeck[fcIndex];
+      const idx = appState.learnedVocabIds.indexOf(card.id);
+      if (learned && idx === -1) {
+        appState.learnedVocabIds.push(card.id);
+      } else if (!learned && idx !== -1) {
+        appState.learnedVocabIds.splice(idx, 1);
+      }
+      saveState();
+
+      if (fcIndex + 1 < fcDeck.length) {
+        fcIndex++;
+      } else {
+        fcIndex = 0;
+        showToast("1周完了！先頭に戻りました", "success");
+      }
+      updateFlashcardUI();
+    }
+
+    function prevFlashcard() {
+      if (fcDeck.length === 0) return;
+      fcIndex = (fcIndex - 1 + fcDeck.length) % fcDeck.length;
+      updateFlashcardUI();
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (currentTab !== "vocab" || vocabSubMode !== "card") return;
+      if (e.code === "Space") {
+        e.preventDefault();
+        flipFlashcard();
+      } else if (e.code === "ArrowRight") {
+        markFlashcard(true);
+      } else if (e.code === "ArrowLeft") {
+        markFlashcard(false);
+      }
+    });
+
+    function initVocabSpeedQuiz() {
+      const pool = getFilteredVocab();
+      const source = pool.length >= 4 ? pool : VOCAB_DATA;
+      vqItems = [...source].sort(() => Math.random() - 0.5).slice(0, Math.min(10, source.length));
+      vqIndex = 0;
+      vqScore = 0;
+      renderVocabSpeedQuestion();
+    }
+
+    function renderVocabSpeedQuestion() {
+      const stage = document.getElementById("vq-stage");
+      if (vqIndex >= vqItems.length) {
+        stage.innerHTML = `
+          <div class="text-center py-6 space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mx-auto">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900">スピードテスト完了！</h3>
+            <p class="text-2xl font-extrabold text-brand-600">${vqScore} / ${vqItems.length} 問正解</p>
+            <p class="text-xs text-slate-500">正解した表現は自動的に「暗記済み」へ反映されました。</p>
+            <button onclick="initVocabSpeedQuiz()" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs sm:text-sm font-bold shadow-sm">
+              もう一度挑戦する
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      const target = vqItems[vqIndex];
+      const distractors = VOCAB_DATA.filter(v => v.id !== target.id).sort(() => Math.random() - 0.5).slice(0, 3);
+      const options = [target, ...distractors].sort(() => Math.random() - 0.5);
+
+      stage.innerHTML = `
+        <div class="flex items-center justify-between text-xs font-bold text-slate-400 mb-4">
+          <span>表現 4択テスト</span>
+          <span>${vqIndex + 1} / ${vqItems.length}</span>
+        </div>
+        <div class="text-center py-4 px-3 rounded-2xl bg-slate-50 border border-slate-200/70 mb-5">
+          <span class="text-[11px] font-extrabold px-2 py-0.5 rounded ${target.unit === 7 ? 'bg-unit7-light text-unit7' : 'bg-unit8-light text-unit8'}">Unit ${target.unit}</span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">${target.en}</h3>
+          <button onclick="speakEnglish('${target.en.replace(/'/g, "\\'")}')" class="mt-2 text-xs font-bold text-brand-600 hover:underline">
+            <i class="fa-solid fa-volume-high mr-1"></i>発音を確認
+          </button>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="vq-options">
+          ${options.map(opt => `
+            <button onclick="checkVocabSpeedAnswer(${opt.id === target.id}, ${target.id}, this)" class="p-3.5 rounded-xl border-2 border-slate-200 hover:border-brand-500 text-left text-sm font-bold text-slate-800 transition">
+              ${opt.ja}
+            </button>
+          `).join("")}
+        </div>
+        <div id="vq-next-wrap" class="hidden mt-4 text-right">
+          <button onclick="vqIndex++; renderVocabSpeedQuestion();" class="px-5 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-extrabold">
+            ${vqIndex + 1 < vqItems.length ? '次の問題へ →' : '結果を見る →'}
+          </button>
+        </div>
+      `;
+    }
+
+    function checkVocabSpeedAnswer(isCorrect, targetId, btn) {
+      document.querySelectorAll("#vq-options button").forEach(b => b.disabled = true);
+      if (isCorrect) {
+        vqScore++;
+        btn.className = "p-3.5 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-left text-sm font-extrabold text-emerald-900";
+        if (!appState.learnedVocabIds.includes(targetId)) {
+          appState.learnedVocabIds.push(targetId);
+          saveState();
+        }
+      } else {
+        btn.className = "p-3.5 rounded-xl border-2 border-rose-500 bg-rose-50 text-left text-sm font-extrabold text-rose-900";
+        const idx = appState.learnedVocabIds.indexOf(targetId);
+        if (idx !== -1) {
+          appState.learnedVocabIds.splice(idx, 1);
+          saveState();
+        }
+      }
+      document.getElementById("vq-next-wrap").classList.remove("hidden");
+    }
+
+    // =========================================================================
+    // 10. VIEW 3: 文法解説＆キー例文マスター描画
+    // =========================================================================
+    let grammarGuideFilter = "all";
+
+    function filterGrammarGuide(unitFilter) {
+      grammarGuideFilter = unitFilter;
+      ["all", 7, 8].forEach(u => {
+        const btn = document.getElementById(`gg-btn-${u}`);
+        if (u === unitFilter) {
+          btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-brand-600 text-white";
+        } else {
+          btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200";
+        }
+      });
+      renderGrammarGuide();
+    }
+
+    function renderGrammarGuide() {
+      const listEl = document.getElementById("grammar-guide-list");
+      const items = grammarGuideFilter === "all"
+        ? GRAMMAR_FACTS
+        : GRAMMAR_FACTS.filter(f => f.unit === grammarGuideFilter);
+
+      listEl.innerHTML = items.map(f => {
+        const isU7 = f.unit === 7;
+        return `
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-2xs space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
+              <div class="flex items-center gap-2.5 flex-wrap">
+                <span class="px-2.5 py-1 rounded-lg text-xs font-extrabold ${isU7 ? 'bg-unit7-light text-unit7' : 'bg-unit8-light text-unit8'}">Unit ${f.unit}</span>
+                <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-white text-xs font-extrabold">${f.code}</span>
+                <h3 class="text-base sm:text-lg font-extrabold text-slate-900">${f.title}</h3>
+              </div>
+              <button onclick="startFactQuiz('${f.factId}')" class="self-start sm:self-auto px-3.5 py-1.5 rounded-xl bg-brand-50 hover:bg-brand-100 text-brand-700 text-xs font-extrabold transition shrink-0">
+                この単元の問題へ →
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div class="p-3.5 rounded-xl bg-brand-50/50 border border-brand-100">
+                <div class="text-[11px] font-extrabold text-brand-700 uppercase tracking-wider mb-1">コア・ルール</div>
+                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">${f.rule}</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-amber-50/60 border border-amber-200/80">
+                <div class="text-[11px] font-extrabold text-amber-800 uppercase tracking-wider mb-1"><i class="fa-solid fa-triangle-exclamation mr-1"></i>テストの急所・ひっかけ</div>
+                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">${f.trap}</p>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <div class="text-xs font-extrabold text-slate-500">重要キー例文（音声タップで確認）</div>
+              <div class="grid grid-cols-1 gap-2">
+                ${f.examples.map(ex => `
+                  <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-between gap-3">
+                    <div>
+                      <p class="text-sm font-extrabold text-slate-900">${ex.en}</p>
+                      <p class="text-xs text-slate-600 mt-0.5">${ex.ja}</p>
+                    </div>
+                    <button onclick="speakEnglish('${ex.en.replace(/'/g, "\\'")}')" class="w-9 h-9 rounded-xl bg-white border border-slate-200 hover:border-brand-400 text-slate-600 hover:text-brand-700 flex items-center justify-center shrink-0 transition" title="例文を再生">
+                      <i class="fa-solid fa-volume-high text-xs"></i>
+                    </button>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    // =========================================================================
+    // 11. VIEW 4: 文法 実践演習テスト（全76問 × 4モード完全対応）
+    // =========================================================================
+    let selectedQuizFormat = "choice"; // 'choice' | 'fill' | 'order' | 'translate' | 'mixed'
+    let activeQuizQueue = [];
+    let currentQIdx = 0;
+    let currentActiveFormat = "choice"; // 現在の問題に適用されている実際のモード
+    let sessionScore = 0;
+    let sessionResults = [];
+    let selectedOrderWords = [];
+
+    const FORMAT_DESCRIPTIONS = {
+      choice: "空欄に入る語句を4つの選択肢から選びます",
+      fill: "空欄に入る適切な英単語をキーボードで入力します",
+      order: "提示された単語・語句を並べ替えて英文を完成させます",
+      translate: "日本語訳だけを見て英文全体を入力します",
+      mixed: "1問ごとに四択・空欄補充・並べ替え・英訳がランダムに出題されます"
+    };
+
+    const FORMAT_LABELS = {
+      choice: { label: "四択モード", color: "bg-indigo-100 text-indigo-700" },
+      fill: { label: "空欄補充モード", color: "bg-amber-100 text-amber-800" },
+      order: { label: "並べ替えモード", color: "bg-emerald-100 text-emerald-800" },
+      translate: { label: "英訳モード", color: "bg-purple-100 text-purple-800" },
+      mixed: { label: "ミックスモード", color: "bg-slate-800 text-white" }
+    };
+
+    function selectQuizFormat(fmt, silent = false) {
+      selectedQuizFormat = fmt;
+      appState.preferredQuizFormat = fmt;
+      if (!silent) saveState();
+
+      ["choice", "fill", "order", "translate", "mixed"].forEach(m => {
+        const btn = document.getElementById(`fmt-btn-${m}`);
+        if (!btn) return;
+        if (m === fmt) {
+          btn.className = `fmt-btn ${m === 'mixed' ? 'col-span-2 sm:col-span-1' : ''} p-2.5 rounded-xl border-2 border-brand-600 bg-brand-600 text-white font-extrabold text-xs sm:text-sm flex flex-col items-center gap-1 shadow-2xs transition`;
+        } else {
+          btn.className = `fmt-btn ${m === 'mixed' ? 'col-span-2 sm:col-span-1' : ''} p-2.5 rounded-xl border-2 border-slate-200 bg-white text-slate-700 hover:border-brand-300 font-extrabold text-xs sm:text-sm flex flex-col items-center gap-1 transition`;
+        }
+      });
+
+      const descEl = document.getElementById("selected-format-desc");
+      if (descEl) descEl.textContent = FORMAT_DESCRIPTIONS[fmt] || "";
+    }
+
+    function startWeaknessDrill() {
+      switchTab("quiz");
+      startQuizSession({ mode: "weak" });
+    }
+
+    function startUnitQuiz(unitNum) {
+      switchTab("quiz");
+      startQuizSession({ mode: "unit", unit: unitNum });
+    }
+
+    function startFactQuiz(factId) {
+      switchTab("quiz");
+      startQuizSession({ mode: "fact", factId });
+    }
+
+    function startQuizSession(options) {
+      let pool = [];
+      let title = "実践演習テスト";
+
+      if (options.mode === "weak") {
+        pool = QUIZ_QUESTIONS.filter(q => appState.weakQuestionIds.includes(q.id));
+        if (pool.length === 0) {
+          showToast("現在ストックされている苦手問題はありません！全範囲から10問出題します。", "info");
+          pool = [...QUIZ_QUESTIONS].sort(() => Math.random() - 0.5).slice(0, 10);
+          title = "全範囲ランダム 10問演習";
+        } else {
+          pool = pool.sort(() => Math.random() - 0.5);
+          title = `🔥 苦手克服特訓（${pool.length}問）`;
+        }
+      } else if (options.mode === "random10") {
+        pool = [...QUIZ_QUESTIONS].sort(() => Math.random() - 0.5).slice(0, 10);
+        title = "全範囲ランダム 10問演習";
+      } else if (options.mode === "added40") {
+        pool = QUIZ_QUESTIONS.filter(q => q.isAdded);
+        title = "追加応用問題 40問コース";
+      } else if (options.mode === "all") {
+        pool = [...QUIZ_QUESTIONS].sort(() => Math.random() - 0.5);
+        title = "全76問 コンプリート演習（ランダム）";
+      } else if (options.mode === "unit") {
+        pool = QUIZ_QUESTIONS.filter(q => q.unit === options.unit);
+        title = `Unit ${options.unit} 集中演習（${pool.length}問）`;
+      } else if (options.mode === "fact") {
+        pool = QUIZ_QUESTIONS.filter(q => q.factId === options.factId);
+        const fObj = GRAMMAR_FACTS.find(f => f.factId === options.factId);
+        title = fObj ? `Unit ${fObj.unit} ${fObj.code} ピンポイント演習` : "単元別演習";
+      }
+
+      activeQuizQueue = pool;
+      currentQIdx = 0;
+      sessionScore = 0;
+      sessionResults = [];
+
+      document.getElementById("quiz-launcher").classList.add("hidden");
+      document.getElementById("quiz-result-panel").classList.add("hidden");
+      document.getElementById("quiz-active-panel").classList.remove("hidden");
+      document.getElementById("quiz-session-title").textContent = title;
+
+      renderCurrentQuizQuestion();
+    }
+
+    function exitQuizSession() {
+      document.getElementById("quiz-active-panel").classList.add("hidden");
+      document.getElementById("quiz-result-panel").classList.add("hidden");
+      document.getElementById("quiz-launcher").classList.remove("hidden");
+      document.getElementById("launcher-weak-count").textContent = appState.weakQuestionIds.length;
+    }
+
+    function renderCurrentQuizQuestion() {
+      if (currentQIdx >= activeQuizQueue.length) {
+        renderQuizResult();
+        return;
+      }
+
+      const q = activeQuizQueue[currentQIdx];
+      const total = activeQuizQueue.length;
+      document.getElementById("quiz-counter").textContent = `${currentQIdx + 1} / ${total}`;
+      document.getElementById("quiz-progress-bar").style.width = `${((currentQIdx + 1) / total) * 100}%`;
+
+      // この問題で使用する出題モードを決定
+      if (selectedQuizFormat === "mixed") {
+        const modes = ["choice", "fill", "order", "translate"];
+        currentActiveFormat = modes[Math.floor(Math.random() * modes.length)];
+      } else {
+        currentActiveFormat = selectedQuizFormat;
+      }
+
+      const fmtBadge = document.getElementById("quiz-active-format-badge");
+      if (fmtBadge) {
+        fmtBadge.textContent = FORMAT_LABELS[currentActiveFormat].label;
+      }
+
+      const isWeak = appState.weakQuestionIds.includes(q.id);
+      const tMeta = FORMAT_LABELS[currentActiveFormat];
+      const factMeta = GRAMMAR_FACTS.find(f => f.factId === q.factId);
+
+      // 問題文（英文プロンプト）の出し分け
+      let promptHeading = "";
+      let japanesePromptHtml = `
+        <p class="text-sm sm:text-base font-bold text-slate-700 flex items-start gap-2">
+          <span class="px-1.5 py-0.5 rounded bg-slate-200 text-slate-700 text-[10px] font-extrabold mt-0.5 shrink-0">日本語</span>
+          <span>${q.ja}</span>
+        </p>
+      `;
+
+      if (currentActiveFormat === "choice" || currentActiveFormat === "fill") {
+        promptHeading = `<p class="text-base sm:text-lg font-extrabold text-slate-900 leading-relaxed">${q.blankSentence}</p>`;
+      } else if (currentActiveFormat === "order") {
+        promptHeading = `<p class="text-sm sm:text-base font-extrabold text-brand-800">提示された単語を一語ずつ正しい語順に並べ替えて英文を作りましょう（出題時は日本語訳を表示しません）</p>`;
+        japanesePromptHtml = "";
+      } else if (currentActiveFormat === "translate") {
+        promptHeading = `<p class="text-sm sm:text-base font-extrabold text-purple-800">次の日本語の意味を表す英文全体を入力しなさい。</p>`;
+      }
+
+      const card = document.getElementById("quiz-question-card");
+      let inputAreaHtml = "";
+
+      if (currentActiveFormat === "choice") {
+        const shuffledChoices = [...q.choices].sort(() => Math.random() - 0.5);
+        inputAreaHtml = `
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="choice-grid">
+            ${shuffledChoices.map((c, i) => `
+              <button onclick="submitChoiceAnswer(this, '${c.replace(/'/g, "\\'")}')" class="min-h-[48px] p-3.5 rounded-xl border-2 border-slate-200 hover:border-brand-500 hover:bg-brand-50/40 active:scale-[0.99] text-left font-bold text-slate-800 text-sm sm:text-base transition flex items-center gap-3">
+                <span class="w-6 h-6 rounded-lg bg-slate-100 text-slate-500 text-xs font-extrabold flex items-center justify-center shrink-0">${i + 1}</span>
+                <span>${c}</span>
+              </button>
+            `).join("")}
+          </div>
+        `;
+      } else if (currentActiveFormat === "fill") {
+        inputAreaHtml = `
+          <div class="space-y-3">
+            ${q.hint ? `<p class="text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1.5 rounded-lg inline-block"><i class="fa-solid fa-lightbulb mr-1"></i>ヒント: ${q.hint}</p>` : ''}
+            <div class="flex flex-col sm:flex-row gap-2.5">
+              <input type="text" id="fill-input" autocomplete="off" autocapitalize="none" placeholder="空欄に入る語句を入力..." class="min-h-[48px] flex-1 px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-brand-500 focus:outline-none text-base font-bold text-slate-900" onkeydown="if(event.key==='Enter') submitFillAnswer()" />
+              <button id="fill-submit-btn" onclick="submitFillAnswer()" class="min-h-[48px] px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 active:scale-95 text-white font-bold text-sm shadow-sm transition">
+                解答する
+              </button>
+            </div>
+          </div>
+        `;
+      } else if (currentActiveFormat === "order") {
+        selectedOrderWords = [];
+        const individualWords = extractIndividualWords(q);
+        const shuffledWords = [...individualWords].sort(() => Math.random() - 0.5);
+        inputAreaHtml = `
+          <div class="space-y-3">
+            <div id="order-answer-box" class="min-h-[60px] p-3 rounded-xl bg-slate-50 border-2 border-dashed border-slate-300 flex flex-wrap items-center gap-2">
+              <span class="text-xs text-slate-400 font-semibold">下の単語ボタンを一語ずつタップして英文を組み立ててください</span>
+            </div>
+            <div id="order-word-pool" class="flex flex-wrap gap-2 pt-1">
+              ${shuffledWords.map((w, idx) => `
+                <button type="button" data-idx="${idx}" data-word="${w.replace(/"/g, '&quot;')}" onclick="toggleOrderWord(this)" class="min-h-[44px] px-3.5 py-2 rounded-xl bg-white border-2 border-slate-200 hover:border-brand-400 text-sm sm:text-base font-bold text-slate-800 shadow-2xs transition active:scale-95">
+                  ${w}
+                </button>
+              `).join("")}
+            </div>
+            <div class="flex items-center justify-between gap-2 pt-2">
+              <button type="button" onclick="resetOrderWords()" class="min-h-[44px] text-xs font-bold text-slate-500 hover:text-slate-800 px-3.5 py-2 rounded-xl hover:bg-slate-100 active:scale-95">
+                <i class="fa-solid fa-rotate-left mr-1"></i>やり直す
+              </button>
+              <button id="order-submit-btn" onclick="submitOrderAnswer()" class="min-h-[44px] px-6 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 active:scale-95 text-white font-bold text-sm shadow-sm transition">
+                この語順で決定
+              </button>
+            </div>
+          </div>
+        `;
+      } else if (currentActiveFormat === "translate") {
+        inputAreaHtml = `
+          <div class="space-y-3">
+            <textarea id="translate-input" rows="2" placeholder="英文全体を入力してください..." class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-brand-500 focus:outline-none text-base font-bold text-slate-900" onkeydown="if(event.key==='Enter' && !event.shiftKey){ event.preventDefault(); submitTranslateAnswer(); }"></textarea>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <span class="text-[11px] text-slate-400">Enterキーまたはボタンで判定</span>
+              <button id="translate-submit-btn" onclick="submitTranslateAnswer()" class="min-h-[46px] w-full sm:w-auto px-6 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 active:scale-95 text-white font-bold text-sm shadow-sm transition">
+                英訳を判定する
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      card.innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="px-2.5 py-1 rounded-lg ${q.unit === 7 ? 'bg-unit7-light text-unit7' : 'bg-unit8-light text-unit8'} text-xs font-extrabold">Unit ${q.unit}</span>
+            <span class="px-2.5 py-1 rounded-lg ${tMeta.color} text-xs font-extrabold">${tMeta.label}</span>
+            ${q.isAdded ? `<span class="px-2 py-0.5 rounded bg-indigo-50 text-indigo-600 border border-indigo-200 text-[10px] font-extrabold">追加問題</span>` : ''}
+            ${factMeta ? `<span class="text-xs font-bold text-slate-400">${factMeta.code}: ${factMeta.title}</span>` : ''}
+          </div>
+          <button onclick="toggleManualWeak('${q.id}', this)" class="text-xs font-bold px-2.5 py-1 rounded-lg border transition ${isWeak ? 'bg-rose-50 border-rose-200 text-rose-600' : 'bg-slate-50 border-slate-200 text-slate-400 hover:text-rose-600'}">
+            <i class="fa-solid fa-bookmark mr-1"></i>${isWeak ? '要復習リスト登録中' : '要復習にチェック'}
+          </button>
+        </div>
+
+        <div class="space-y-2 p-4 rounded-2xl bg-slate-50/80 border border-slate-200/70">
+          ${promptHeading}
+          ${japanesePromptHtml}
+        </div>
+
+        <div id="quiz-interaction-area">
+          ${inputAreaHtml}
+        </div>
+
+        <!-- 解説・フィードバック領域（解答後に表示） -->
+        <div id="quiz-feedback-area" class="hidden pt-4 border-t border-slate-100 space-y-3"></div>
+      `;
+
+      if (currentActiveFormat === "fill") {
+        setTimeout(() => document.getElementById("fill-input")?.focus(), 50);
+      } else if (currentActiveFormat === "translate") {
+        setTimeout(() => document.getElementById("translate-input")?.focus(), 50);
+      }
+    }
+
+    function toggleManualWeak(qId, btn) {
+      const idx = appState.weakQuestionIds.indexOf(qId);
+      if (idx === -1) {
+        appState.weakQuestionIds.push(qId);
+        btn.className = "text-xs font-bold px-2.5 py-1 rounded-lg border transition bg-rose-50 border-rose-200 text-rose-600";
+        btn.innerHTML = `<i class="fa-solid fa-bookmark mr-1"></i>要復習リスト登録中`;
+        showToast("要復習リストに追加しました", "info");
+      } else {
+        appState.weakQuestionIds.splice(idx, 1);
+        btn.className = "text-xs font-bold px-2.5 py-1 rounded-lg border transition bg-slate-50 border-slate-200 text-slate-400 hover:text-rose-600";
+        btn.innerHTML = `<i class="fa-solid fa-bookmark mr-1"></i>要復習にチェック`;
+        showToast("要復習リストから解除しました", "info");
+      }
+      saveState();
+    }
+
+    // --- 並び替え操作 ---
+    function extractIndividualWords(q) {
+      const sourceText = q.fullEn || (Array.isArray(q.orderChunks) ? q.orderChunks.join(" ") : "");
+      return sourceText
+        .split(/\s+/)
+        .map(token => token.replace(/^[.,!?;:"'()]+|[.,!?;:"'()]+$/g, ""))
+        .filter(token => token.length > 0);
+    }
+
+    function toggleOrderWord(btn) {
+      if (btn.disabled) return;
+      const idx = btn.getAttribute("data-idx");
+      const word = btn.getAttribute("data-word");
+      selectedOrderWords.push({ idx, word });
+      btn.classList.add("opacity-30", "pointer-events-none");
+      renderOrderAnswerBox();
+    }
+
+    function removeSelectedOrderWord(pos) {
+      const removed = selectedOrderWords.splice(pos, 1)[0];
+      if (removed) {
+        const poolBtn = document.querySelector(`#order-word-pool button[data-idx="${removed.idx}"]`);
+        if (poolBtn) poolBtn.classList.remove("opacity-30", "pointer-events-none");
+      }
+      renderOrderAnswerBox();
+    }
+
+    function resetOrderWords() {
+      selectedOrderWords = [];
+      document.querySelectorAll("#order-word-pool button").forEach(b => {
+        b.classList.remove("opacity-30", "pointer-events-none");
+      });
+      renderOrderAnswerBox();
+    }
+
+    function renderOrderAnswerBox() {
+      const box = document.getElementById("order-answer-box");
+      if (selectedOrderWords.length === 0) {
+        box.innerHTML = `<span class="text-xs text-slate-400 font-semibold">下の単語ボタンをタップして英文を組み立ててください</span>`;
+        return;
+      }
+      box.innerHTML = selectedOrderWords.map((item, pos) => `
+        <button type="button" onclick="removeSelectedOrderWord(${pos})" class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm font-bold shadow-2xs hover:bg-rose-600 transition" title="タップで戻す">
+          ${item.word}
+        </button>
+      `).join("");
+    }
+
+    // --- 各形式の採点処理 ---
+    function submitChoiceAnswer(btn, chosen) {
+      const q = activeQuizQueue[currentQIdx];
+      const buttons = document.querySelectorAll("#choice-grid button");
+      buttons.forEach(b => b.disabled = true);
+
+      const isCorrect = chosen === q.blankAnswer;
+      if (isCorrect) {
+        btn.className = "p-3.5 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-left font-extrabold text-emerald-900 text-sm sm:text-base flex items-center gap-3";
+      } else {
+        btn.className = "p-3.5 rounded-xl border-2 border-rose-500 bg-rose-50 text-left font-extrabold text-rose-900 text-sm sm:text-base flex items-center gap-3";
+        buttons.forEach(b => {
+          if (b.querySelector("span:last-child").textContent.trim() === q.blankAnswer) {
+            b.className = "p-3.5 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-left font-extrabold text-emerald-900 text-sm sm:text-base flex items-center gap-3";
+          }
+        });
+      }
+      finalizeQuestionResult(isCorrect, q.blankAnswer, q.fullEn);
+    }
+
+    function submitFillAnswer() {
+      const input = document.getElementById("fill-input");
+      const btn = document.getElementById("fill-submit-btn");
+      if (!input || input.disabled) return;
+
+      const q = activeQuizQueue[currentQIdx];
+      const userVal = input.value.trim().toLowerCase().replace(/\s+/g, " ");
+      const validList = (q.acceptBlanks || [q.blankAnswer]).map(a => a.toLowerCase().trim());
+      const isCorrect = validList.includes(userVal);
+
+      input.disabled = true;
+      btn.disabled = true;
+      input.classList.add(isCorrect ? "border-emerald-500" : "border-rose-500", isCorrect ? "bg-emerald-50" : "bg-rose-50");
+
+      finalizeQuestionResult(isCorrect, q.blankAnswer, q.fullEn);
+    }
+
+    function submitOrderAnswer() {
+      const q = activeQuizQueue[currentQIdx];
+      const expectedWords = extractIndividualWords(q);
+      if (selectedOrderWords.length < expectedWords.length) {
+        showToast("すべての単語を選択してください", "info");
+        return;
+      }
+      document.querySelectorAll("#order-word-pool button").forEach(b => b.disabled = true);
+      document.getElementById("order-submit-btn").disabled = true;
+
+      const userWords = selectedOrderWords.map(w => w.word);
+      const isExactWordMatch =
+        userWords.length === expectedWords.length &&
+        userWords.every((w, i) => w.toLowerCase() === expectedWords[i].toLowerCase());
+      const userSentence = userWords.join(" ");
+      const isCorrect =
+        isExactWordMatch ||
+        [q.fullEn, ...(q.altFullEn || [])].some(s => normalizeSentence(s) === normalizeSentence(userSentence));
+
+      finalizeQuestionResult(isCorrect, q.fullEn, q.fullEn, false, q.ja);
+    }
+
+    // 英文の表記揺れ（大文字小文字・句読点・短縮形）を吸収して比較するヘルパー
+    function normalizeSentence(str) {
+      return str
+        .toLowerCase()
+        .replace(/’/g, "'")
+        .replace(/\bi'm\b/g, "i am")
+        .replace(/\bi've\b/g, "i have")
+        .replace(/\bit's\b/g, "it is")
+        .replace(/\bthat's\b/g, "that is")
+        .replace(/\bdon't\b/g, "do not")
+        .replace(/\bdoesn't\b/g, "does not")
+        .replace(/\bdidn't\b/g, "did not")
+        .replace(/\bcouldn't\b/g, "could not")
+        .replace(/\bisn't\b/g, "is not")
+        .replace(/[.,!?]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function submitTranslateAnswer() {
+      const input = document.getElementById("translate-input");
+      const btn = document.getElementById("translate-submit-btn");
+      if (!input || input.disabled) return;
+
+      const q = activeQuizQueue[currentQIdx];
+      const userNorm = normalizeSentence(input.value);
+      const validSentences = [q.fullEn, ...(q.altFullEn || [])].map(normalizeSentence);
+      const isAutoMatched = userNorm.length > 0 && validSentences.includes(userNorm);
+
+      input.disabled = true;
+      btn.classList.add("hidden");
+
+      if (isAutoMatched) {
+        input.classList.add("border-emerald-500", "bg-emerald-50");
+        finalizeQuestionResult(true, q.fullEn, q.fullEn);
+      } else {
+        // 完全一致しない場合は模範解答を提示し、別解表現での正解も自己申告できるようにする
+        const fb = document.getElementById("quiz-feedback-area");
+        fb.classList.remove("hidden");
+        fb.innerHTML = `
+          <div class="p-4 rounded-xl bg-brand-50 border border-brand-200 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold text-brand-700">模範解答</span>
+              <button onclick="speakEnglish('${q.fullEn.replace(/'/g, "\\'")}')" class="text-xs font-bold text-brand-700 hover:underline">
+                <i class="fa-solid fa-volume-high mr-1"></i>音声を聞く
+              </button>
+            </div>
+            <p class="text-base font-extrabold text-slate-900">${q.fullEn}</p>
+            ${q.altFullEn && q.altFullEn.length > 0 ? `<p class="text-xs text-slate-600">別解例: ${q.altFullEn.join(" / ")}</p>` : ''}
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed">
+            <strong>文法解説：</strong>${q.explanation}
+          </div>
+          <div class="pt-1">
+            <p class="text-xs font-bold text-slate-600 mb-2 text-center">模範解答と照らし合わせて判定を確定してください：</p>
+            <div class="grid grid-cols-2 gap-3">
+              <button onclick="finalizeTranslateManual(false)" class="py-2.5 px-4 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 font-extrabold text-xs sm:text-sm">
+                <i class="fa-solid fa-xmark mr-1"></i>不正解（要復習に追加）
+              </button>
+              <button onclick="finalizeTranslateManual(true)" class="py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs sm:text-sm">
+                <i class="fa-solid fa-check mr-1"></i>別解・スペル許容で正解！
+              </button>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function finalizeTranslateManual(isCorrect) {
+      const q = activeQuizQueue[currentQIdx];
+      finalizeQuestionResult(isCorrect, q.fullEn, q.fullEn, true);
+    }
+
+    function finalizeQuestionResult(isCorrect, displayCorrectText, fullSpeakSentence, skipReRenderFeedback = false, extraJapaneseNote = "") {
+      const q = activeQuizQueue[currentQIdx];
+      appState.totalAttempts++;
+      if (isCorrect) {
+        sessionScore++;
+        appState.totalCorrect++;
+        appState.factStats[q.factId].correct++;
+        if (!appState.masteredQuestionIds.includes(q.id)) {
+          appState.masteredQuestionIds.push(q.id);
+        }
+        const wIdx = appState.weakQuestionIds.indexOf(q.id);
+        if (wIdx !== -1) {
+          appState.weakQuestionIds.splice(wIdx, 1);
+        }
+      } else {
+        appState.factStats[q.factId].wrong++;
+        if (!appState.weakQuestionIds.includes(q.id)) {
+          appState.weakQuestionIds.push(q.id);
+        }
+      }
+
+      sessionResults.push({ q, isCorrect });
+      saveState();
+
+      const fb = document.getElementById("quiz-feedback-area");
+      fb.classList.remove("hidden");
+      const jaNoteHtml = extraJapaneseNote
+        ? `<p class="text-xs text-slate-600 pl-6">日本語訳: ${extraJapaneseNote}</p>`
+        : "";
+
+      const bannerHtml = isCorrect
+        ? `<div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between gap-2">
+             <div class="space-y-0.5">
+               <div class="flex items-center gap-2 text-emerald-800 font-extrabold text-sm">
+                 <i class="fa-solid fa-circle-check text-lg text-emerald-600"></i>
+                 <span>正解！ ナイスです！</span>
+               </div>
+               <p class="text-xs font-bold text-emerald-900 pl-6">完成英文: ${fullSpeakSentence}</p>
+               ${jaNoteHtml}
+             </div>
+             <button onclick="speakEnglish('${fullSpeakSentence.replace(/'/g, "\\'")}')" class="px-2.5 py-1.5 rounded-lg bg-white border border-emerald-200 text-emerald-700 text-xs font-bold shrink-0">
+               <i class="fa-solid fa-volume-high mr-1"></i>発音確認
+             </button>
+           </div>`
+        : `<div class="p-3.5 rounded-xl bg-rose-50 border border-rose-200 flex items-center justify-between gap-2">
+             <div class="space-y-0.5">
+               <div class="flex items-center gap-2 text-rose-800 font-extrabold text-sm">
+                 <i class="fa-solid fa-circle-xmark text-lg text-rose-600"></i>
+                 <span>不正解（要復習リストに追加しました）</span>
+               </div>
+               <p class="text-xs font-bold text-rose-900 pl-6">正解: <span class="underline">${displayCorrectText}</span></p>
+               ${displayCorrectText !== fullSpeakSentence ? `<p class="text-xs text-rose-800 pl-6">完成英文: ${fullSpeakSentence}</p>` : ''}
+               ${jaNoteHtml}
+             </div>
+             <button onclick="speakEnglish('${fullSpeakSentence.replace(/'/g, "\\'")}')" class="px-2.5 py-1.5 rounded-lg bg-white border border-rose-200 text-rose-700 text-xs font-bold shrink-0">
+               <i class="fa-solid fa-volume-high mr-1"></i>発音確認
+             </button>
+           </div>`;
+
+      const nextBtnHtml = `
+        <div class="flex justify-end pt-2">
+          <button onclick="nextQuizQuestion()" class="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-sm shadow-sm transition flex items-center gap-2">
+            <span>${currentQIdx + 1 < activeQuizQueue.length ? '次の問題へ' : '結果を見る'}</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      `;
+
+      if (skipReRenderFeedback) {
+        fb.innerHTML = bannerHtml + nextBtnHtml;
+      } else {
+        fb.innerHTML = `
+          ${bannerHtml}
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed">
+            <strong class="text-slate-900">文法解説：</strong>${q.explanation}
+          </div>
+          ${nextBtnHtml}
+        `;
+      }
+    }
+
+    function nextQuizQuestion() {
+      currentQIdx++;
+      renderCurrentQuizQuestion();
+    }
+
+    function renderQuizResult() {
+      document.getElementById("quiz-active-panel").classList.add("hidden");
+      const panel = document.getElementById("quiz-result-panel");
+      panel.classList.remove("hidden");
+
+      const total = activeQuizQueue.length;
+      const pct = Math.round((sessionScore / total) * 100);
+      const wrongList = sessionResults.filter(r => !r.isCorrect);
+
+      panel.innerHTML = `
+        <div class="w-16 h-16 rounded-2xl ${pct >= 80 ? 'bg-emerald-100 text-emerald-600' : 'bg-brand-100 text-brand-600'} flex items-center justify-center text-3xl mx-auto">
+          <i class="fa-solid ${pct >= 80 ? 'fa-crown' : 'fa-flag-checkered'}"></i>
+        </div>
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-slate-400">SESSION COMPLETE</span>
+          <h3 class="text-2xl font-extrabold text-slate-900 mt-1">演習お疲れさまでした！</h3>
+        </div>
+        <div class="py-3 px-6 rounded-2xl bg-slate-50 border border-slate-200 inline-block">
+          <span class="text-4xl font-extrabold text-brand-600">${sessionScore}</span>
+          <span class="text-base font-bold text-slate-500"> / ${total} 問正解 (${pct}%)</span>
+        </div>
+
+        ${wrongList.length > 0 ? `
+          <div class="text-left bg-rose-50/70 border border-rose-200 rounded-2xl p-4 space-y-2">
+            <div class="text-xs font-extrabold text-rose-700 flex items-center gap-1.5">
+              <i class="fa-solid fa-fire"></i>
+              <span>今回間違えた問題（${wrongList.length}問 → 苦手リストに保存済み）</span>
+            </div>
+            <ul class="space-y-1.5 text-xs text-slate-700">
+              ${wrongList.map(item => `
+                <li class="p-2 rounded-lg bg-white border border-rose-100">
+                  <span class="font-extrabold text-rose-600 mr-1">[U${item.q.unit} ${item.q.factId.split('-')[1]}]</span>
+                  <span class="font-bold">${item.q.ja}</span>
+                  <div class="text-slate-500 mt-0.5">正解英文: <strong class="text-slate-800">${item.q.fullEn}</strong></div>
+                </li>
+              `).join("")}
+            </ul>
+          </div>
+        ` : `
+          <p class="text-sm font-bold text-emerald-600">全問正解です！この単元は完璧に仕上がっています！</p>
+        `}
+
+        <div class="flex flex-wrap justify-center gap-3 pt-2">
+          ${wrongList.length > 0 ? `
+            <button onclick="startQuizSession({ mode: 'weak' })" class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs sm:text-sm font-bold shadow-sm transition">
+              <i class="fa-solid fa-fire mr-1"></i>間違えた問題だけ再テスト
+            </button>
+          ` : ''}
+          <button onclick="exitQuizSession()" class="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-bold transition">
+            演習メニューへ戻る
+          </button>
+          <button onclick="switchTab('dashboard')" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs sm:text-sm font-bold shadow-sm transition">
+            ダッシュボードで分析を見る
+          </button>
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // 12. 初期化エントリーポイント
+    // =========================================================================
+    window.addEventListener("DOMContentLoaded", () => {
+      loadState();
+      selectQuizFormat(appState.preferredQuizFormat || "choice", true);
+      updateGlobalStatsUI();
+      renderDashboard();
+      renderVocabList();
+      renderGrammarGuide();
+    });
+  </script>
+</body>
+</html>
